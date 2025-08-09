@@ -5,41 +5,16 @@ import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import majors from "@/data/majors.json";
 import { Link } from "react-router-dom";
-import {
-  setupDatabase,
-  testSupabaseConnection,
-  testSupabaseOperations,
-} from "@/utils/setupDatabase";
 
 export default function Admin() {
   const [q, setQ] = useState("");
   const [items, setItems] = useState<any[]>([]);
-  const [dbStatus, setDbStatus] = useState<string>("");
 
   useEffect(() => {
     const listKey = "advisor_results_index";
     const raw = localStorage.getItem(listKey);
     setItems(raw ? JSON.parse(raw) : []);
   }, []);
-
-  const handleTestConnection = async () => {
-    setDbStatus("Đang kiểm tra...");
-    const isConnected = await testSupabaseConnection();
-    if (isConnected) {
-      const isSetup = await setupDatabase();
-      setDbStatus(isSetup ? "✅ Sẵn sàng sử dụng" : "⚠️ Cần chạy migration");
-    } else {
-      setDbStatus("❌ Lỗi kết nối");
-    }
-  };
-
-  const handleTestOperations = async () => {
-    setDbStatus("Đang test operations...");
-    const isWorking = await testSupabaseOperations();
-    setDbStatus(
-      isWorking ? "🎉 Operations hoạt động hoàn hảo!" : "❌ Operations lỗi"
-    );
-  };
 
   const filtered = useMemo(
     () => items.filter((i) => i.name.toLowerCase().includes(q.toLowerCase())),
@@ -55,37 +30,6 @@ export default function Admin() {
         title="Admin – Submissions"
         description="Danh sách submissions demo (lưu local)."
       />
-
-      {/* Supabase Status Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>🗄️ Supabase Database Status</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex gap-3 items-center flex-wrap">
-            <Button onClick={handleTestConnection} variant="outline">
-              Test Kết nối
-            </Button>
-            <Button onClick={handleTestOperations} variant="outline">
-              Test Operations
-            </Button>
-            {dbStatus && <span className="text-sm">{dbStatus}</span>}
-          </div>
-          <div className="text-xs text-muted-foreground space-y-1">
-            <p>
-              <strong>Test Kết nối:</strong> Kiểm tra URL và API key
-            </p>
-            <p>
-              <strong>Test Operations:</strong> Thử INSERT/SELECT thực tế (cần
-              table đã tạo)
-            </p>
-            <p>
-              ⚠️ Nếu lỗi, check console để xem chi tiết và copy SQL migration từ
-              console
-            </p>
-          </div>
-        </CardContent>
-      </Card>
 
       <Card>
         <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

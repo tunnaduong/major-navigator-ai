@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import logoFPT from "@/assets/logo-fpt-polytechnic.jpg";
 
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
@@ -20,7 +21,12 @@ function ThemeToggle() {
     setIsDark(nextIsDark);
   };
   return (
-    <Button variant="soft" size="sm" aria-label="Toggle dark mode" onClick={toggle}>
+    <Button
+      variant="soft"
+      size="sm"
+      aria-label="Toggle dark mode"
+      onClick={toggle}
+    >
       {isDark ? "🌙" : "☀️"}
     </Button>
   );
@@ -34,9 +40,15 @@ export const Header = () => {
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="size-8 rounded-md" style={{ backgroundImage: "var(--gradient-accent)" }} />
+          <img
+            src={logoFPT}
+            alt="FPT Polytechnic Logo"
+            className="size-8 rounded-md object-cover"
+          />
           <span className="font-semibold">AI Major Advisor</span>
-          <span className="text-muted-foreground hidden sm:inline">— FPT Polytechnic</span>
+          <span className="text-muted-foreground hidden sm:inline">
+            — FPT Polytechnic
+          </span>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
           <NavLink to="/" className={getNavCls} end>
@@ -45,8 +57,8 @@ export const Header = () => {
           <NavLink to="/quiz" className={getNavCls}>
             Tư vấn
           </NavLink>
-          <NavLink to="/admin" className={getNavCls}>
-            Admin
+          <NavLink to="/history" className={getNavCls}>
+            Lịch sử
           </NavLink>
           <NavLink to="/about" className={getNavCls}>
             About

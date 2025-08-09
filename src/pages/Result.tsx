@@ -2,12 +2,14 @@ import hero from "@/assets/hero-fpt.jpg";
 import majors from "@/data/majors.json";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { useParams, useSearchParams } from "react-router-dom";
 import { QRModal } from "@/components/advisor/QRModal";
 import { TraitBarChart } from "@/components/advisor/Charts";
 import { SubjectModal } from "@/components/advisor/SubjectModal";
 import { AIAnalysisModal } from "@/components/advisor/AIAnalysisModal";
+import PersonalInfographic from "@/components/infographic/PersonalInfographic";
 import {
   decodeResultData,
   encodeResultData,
@@ -155,129 +157,265 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* Phần này sẽ được xuất ra infographic */}
-        <div ref={ref} className="space-y-6 bg-white p-6 rounded-lg">
-          {/* Header cho infographic */}
-          <div className="text-center border-b pb-4">
-            <h2 className="text-3xl font-bold text-primary">
-              AI Major Advisor
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Kết quả tư vấn chọn ngành - FPT Polytechnic
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Dành cho: {result.submission.name}
-            </p>
-          </div>
-          <Card className="shadow-elevate">
-            <CardHeader>
-              <CardTitle>
-                Top 1 — {top1.name_vi} ({top1.name_en})
-              </CardTitle>
-            </CardHeader>
+        {/* Tabs để tổ chức nội dung */}
+        <Tabs defaultValue="results" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="results">📊 Kết quả</TabsTrigger>
+            <TabsTrigger value="analysis">📈 Phân tích chi tiết</TabsTrigger>
+            <TabsTrigger value="infographic">🎨 Infographic</TabsTrigger>
+          </TabsList>
 
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="md:col-span-2 space-y-2">
-                  <p className="text-sm">{top1.description}</p>
-                  <p className="text-sm">
-                    <strong>Vì sao phù hợp:</strong> {result.reasons}
-                  </p>
-
-                  {/* Các nút hành động cho Top 1 */}
-                  <div className="flex gap-2 pt-2">
-                    <AIAnalysisModal
-                      major={top1}
-                      userProfile={{
-                        name: result.submission.name,
-                        preferences: result.submission.preferences,
-                        traits: result.submission.traits,
-                        scores: result.submission.scores,
-                        favorites: result.submission.favorites,
-                        orientation: result.submission.orientation,
-                        habits: result.submission.habits,
-                      }}
-                      triggerText="🤖 Phân tích"
-                    />
-                    <SubjectModal major={top1} triggerText="📚 Xem môn học" />
-                  </div>
-                </div>
-                <div className="md:col-span-1">
-                  <TraitBarChart traits={result.submission.traits} />
-                </div>
+          <TabsContent value="results">
+            {/* Phần này sẽ được xuất ra infographic */}
+            <div ref={ref} className="space-y-6 bg-white p-6 rounded-lg">
+              {/* Header cho infographic */}
+              <div className="text-center border-b pb-4">
+                <h2 className="text-3xl font-bold text-primary">
+                  AI Major Advisor
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Kết quả tư vấn chọn ngành - FPT Polytechnic
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Dành cho: {result.submission.name}
+                </p>
               </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {top2 && (
-              <Card>
+              <Card className="shadow-elevate">
                 <CardHeader>
-                  <CardTitle>Top 2 — {top2.name_vi}</CardTitle>
+                  <CardTitle>
+                    Top 1 — {top1.name_vi} ({top1.name_en})
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm">{top2.description}</p>
 
-                  {/* Các nút hành động */}
-                  <div className="flex gap-2 pt-2">
-                    <AIAnalysisModal
-                      major={top2}
-                      userProfile={{
-                        name: result.submission.name,
-                        preferences: result.submission.preferences,
-                        traits: result.submission.traits,
-                        scores: result.submission.scores,
-                        favorites: result.submission.favorites,
-                        orientation: result.submission.orientation,
-                        habits: result.submission.habits,
-                      }}
-                      triggerText="🤖 Phân tích"
-                    />
-                    <SubjectModal major={top2} triggerText="📚 Xem môn học" />
+                <CardContent className="space-y-4">
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="md:col-span-2 space-y-2">
+                      <p className="text-sm">{top1.description}</p>
+                      <p className="text-sm">
+                        <strong>Vì sao phù hợp:</strong> {result.reasons}
+                      </p>
+
+                      {/* Các nút hành động cho Top 1 */}
+                      <div className="flex gap-2 pt-2">
+                        <AIAnalysisModal
+                          major={top1}
+                          userProfile={{
+                            name: result.submission.name,
+                            preferences: result.submission.preferences,
+                            traits: result.submission.traits,
+                            scores: result.submission.scores,
+                            favorites: result.submission.favorites,
+                            orientation: result.submission.orientation,
+                            habits: result.submission.habits,
+                          }}
+                          triggerText="🤖 Phân tích"
+                        />
+                        <SubjectModal
+                          major={top1}
+                          triggerText="📚 Xem môn học"
+                        />
+                      </div>
+                    </div>
+                    <div className="md:col-span-1">
+                      <TraitBarChart traits={result.submission.traits} />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            )}
-            {top3 && (
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {top2 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Top 2 — {top2.name_vi}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-sm">{top2.description}</p>
+
+                      {/* Các nút hành động */}
+                      <div className="flex gap-2 pt-2">
+                        <AIAnalysisModal
+                          major={top2}
+                          userProfile={{
+                            name: result.submission.name,
+                            preferences: result.submission.preferences,
+                            traits: result.submission.traits,
+                            scores: result.submission.scores,
+                            favorites: result.submission.favorites,
+                            orientation: result.submission.orientation,
+                            habits: result.submission.habits,
+                          }}
+                          triggerText="🤖 Phân tích"
+                        />
+                        <SubjectModal
+                          major={top2}
+                          triggerText="📚 Xem môn học"
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+                {top3 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Top 3 — {top3.name_vi}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-sm">{top3.description}</p>
+
+                      {/* Các nút hành động */}
+                      <div className="flex gap-2 pt-2">
+                        <AIAnalysisModal
+                          major={top3}
+                          userProfile={{
+                            name: result.submission.name,
+                            preferences: result.submission.preferences,
+                            traits: result.submission.traits,
+                            scores: result.submission.scores,
+                            favorites: result.submission.favorites,
+                            orientation: result.submission.orientation,
+                            habits: result.submission.habits,
+                          }}
+                          triggerText="🤖 Phân tích"
+                        />
+                        <SubjectModal
+                          major={top3}
+                          triggerText="📚 Xem môn học"
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+
+              {/* Footer cho infographic */}
+              <div className="text-center border-t pt-4 mt-6">
+                <p className="text-sm text-muted-foreground">
+                  🎓 Được tạo bởi AI Major Advisor - FPT Polytechnic
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {new Date().toLocaleDateString("vi-VN")}
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="analysis">
+            <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Top 3 — {top3.name_vi}</CardTitle>
+                  <CardTitle>📊 Phân tích tính cách chi tiết</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm">{top3.description}</p>
-
-                  {/* Các nút hành động */}
-                  <div className="flex gap-2 pt-2">
-                    <AIAnalysisModal
-                      major={top3}
-                      userProfile={{
-                        name: result.submission.name,
-                        preferences: result.submission.preferences,
-                        traits: result.submission.traits,
-                        scores: result.submission.scores,
-                        favorites: result.submission.favorites,
-                        orientation: result.submission.orientation,
-                        habits: result.submission.habits,
-                      }}
-                      triggerText="🤖 Phân tích"
-                    />
-                    <SubjectModal major={top3} triggerText="📚 Xem môn học" />
+                <CardContent>
+                  <TraitBarChart traits={result.submission.traits} />
+                  <div className="mt-4 grid gap-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Sở thích của bạn:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {result.submission.preferences.map((pref, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                          >
+                            {pref}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    {result.submission.favorites.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-2">Ngành yêu thích:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {result.submission.favorites.map((fav, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                            >
+                              {fav}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="font-semibold mb-2">
+                        Định hướng nghề nghiệp:
+                      </h4>
+                      <p className="text-gray-700">
+                        {result.submission.orientation}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            )}
-          </div>
 
-          {/* Footer cho infographic */}
-          <div className="text-center border-t pt-4 mt-6">
-            <p className="text-sm text-muted-foreground">
-              🎓 Được tạo bởi AI Major Advisor - FPT Polytechnic
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {new Date().toLocaleDateString("vi-VN")}
-            </p>
-          </div>
-        </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>🏆 Chi tiết top 3 ngành phù hợp</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {result.top.slice(0, 3).map((major, index) => {
+                      const majorData = majors.find(
+                        (m) => m.id === major.majorId
+                      );
+                      if (!majorData) return null;
+
+                      return (
+                        <div
+                          key={major.majorId}
+                          className="border-l-4 border-blue-500 pl-4"
+                        >
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <h5 className="font-semibold text-lg">
+                                #{index + 1} {majorData.name_vi}
+                              </h5>
+                              <p className="text-gray-600 text-sm mb-2">
+                                {majorData.description}
+                              </p>
+                              <div className="flex gap-2">
+                                <AIAnalysisModal
+                                  major={majorData}
+                                  userProfile={{
+                                    name: result.submission.name,
+                                    preferences: result.submission.preferences,
+                                    traits: result.submission.traits,
+                                    scores: result.submission.scores,
+                                    favorites: result.submission.favorites,
+                                    orientation: result.submission.orientation,
+                                    habits: result.submission.habits,
+                                  }}
+                                  triggerText="🤖 Phân tích AI"
+                                />
+                                <SubjectModal
+                                  major={majorData}
+                                  triggerText="📚 Xem môn học"
+                                />
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-2xl font-bold text-blue-600">
+                                {major.score?.toFixed(1)}%
+                              </div>
+                              <div className="text-xs text-gray-500">
+                                Độ phù hợp
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="infographic">
+            <PersonalInfographic result={result} />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
