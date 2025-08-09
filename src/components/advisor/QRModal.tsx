@@ -23,13 +23,7 @@ export function QRModal({ url }: { url: string }) {
             <QRCode value={url} size={196} />
           </div>
         </div>
-        <div className="text-center space-y-2">
-          <p className="text-sm text-green-600 font-medium">
-            ✅ Mã QR đơn giản - dễ quét
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Chỉ hoạt động trên thiết bị đã làm quiz này
-          </p>
+        <div className="text-center">
           <p className="text-xs text-muted-foreground break-all border-t pt-2">
             {url}
           </p>

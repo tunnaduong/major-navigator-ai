@@ -5,13 +5,15 @@ export async function setupDatabase() {
   try {
     // Thử query để kiểm tra table đã tồn tại chưa
     const { error: checkError } = await supabase
-      .from('quiz_results')
-      .select('id')
+      .from("quiz_results")
+      .select("id")
       .limit(1);
 
     if (checkError) {
-      console.log('Table quiz_results chưa tồn tại, cần tạo trong Supabase dashboard');
-      console.log('Vui lòng chạy migration SQL sau trong Supabase dashboard:');
+      console.log(
+        "Table quiz_results chưa tồn tại, cần tạo trong Supabase dashboard"
+      );
+      console.log("Vui lòng chạy migration SQL sau trong Supabase dashboard:");
       console.log(`
 -- Tạo table quiz_results để lưu kết quả quiz
 CREATE TABLE quiz_results (
@@ -41,10 +43,10 @@ CREATE POLICY "Allow public insert" ON quiz_results
       return false;
     }
 
-    console.log('✅ Table quiz_results đã tồn tại và sẵn sàng sử dụng');
+    console.log("✅ Table quiz_results đã tồn tại và sẵn sàng sử dụng");
     return true;
   } catch (error) {
-    console.error('Lỗi khi kiểm tra database:', error);
+    console.error("Lỗi khi kiểm tra database:", error);
     return false;
   }
 }
@@ -52,23 +54,93 @@ CREATE POLICY "Allow public insert" ON quiz_results
 // Function test connection
 export async function testSupabaseConnection() {
   try {
-    console.log('🔍 Đang test kết nối Supabase...');
-    
-    // Test basic connection
-    const { data, error } = await supabase
-      .from('quiz_results')
-      .select('count')
-      .limit(0);
+    console.log("🔍 Đang test kết nối Supabase...");
+    console.log("📋 URL:", supabase.supabaseUrl);
+    console.log("🔑 API Key:", supabase.supabaseKey.substring(0, 20) + "...");
 
-    if (error) {
-      console.error('❌ Lỗi kết nối:', error.message);
+    // Test 1: Kiểm tra basic connection với một table chắc chắn tồn tại
+    const { data: healthCheck, error: healthError } = await supabase
+      .from("quiz_results")
+      .select("*")
+      .limit(1);
+
+    if (healthError) {
+      console.error("❌ Lỗi kết nối cơ bản:", healthError);
+      console.log("Chi tiết lỗi:", {
+        message: healthError.message,
+        code: healthError.code,
+        details: healthError.details,
+        hint: healthError.hint,
+      });
       return false;
     }
 
-    console.log('✅ Kết nối Supabase thành công!');
+    console.log("✅ Kết nối Supabase thành công!");
+    console.log("📊 Dữ liệu test:", healthCheck);
     return true;
   } catch (error) {
-    console.error('❌ Lỗi kết nối Supabase:', error);
+    console.error("❌ Lỗi kết nối Supabase:", error);
+    return false;
+  }
+}
+
+// Function test thực tế với insert/select
+export async function testSupabaseOperations() {
+  try {
+    console.log("🧪 Đang test các operations Supabase...");
+
+    const testId = `test_${Date.now()}`;
+    const testData = {
+      id: testId,
+      submission_data: { name: "Test User", test: true },
+      scores: { math: 8, english: 7 },
+      top_majors: [{ majorId: "software", score: 0.85 }],
+      reasons: "Test connection",
+    };
+
+    // Test INSERT
+    console.log("📝 Test INSERT...");
+    const { error: insertError } = await supabase
+      .from("quiz_results")
+      .insert(testData);
+
+    if (insertError) {
+      console.error("❌ Lỗi INSERT:", insertError);
+      return false;
+    }
+    console.log("✅ INSERT thành công");
+
+    // Test SELECT
+    console.log("📖 Test SELECT...");
+    const { data: selectData, error: selectError } = await supabase
+      .from("quiz_results")
+      .select("*")
+      .eq("id", testId)
+      .single();
+
+    if (selectError) {
+      console.error("❌ Lỗi SELECT:", selectError);
+      return false;
+    }
+    console.log("✅ SELECT thành công:", selectData);
+
+    // Clean up: DELETE test data
+    console.log("🗑️ Cleanup test data...");
+    const { error: deleteError } = await supabase
+      .from("quiz_results")
+      .delete()
+      .eq("id", testId);
+
+    if (deleteError) {
+      console.warn("⚠️ Không thể xóa test data:", deleteError);
+    } else {
+      console.log("✅ Cleanup thành công");
+    }
+
+    console.log("🎉 Tất cả operations hoạt động bình thường!");
+    return true;
+  } catch (error) {
+    console.error("❌ Lỗi test operations:", error);
     return false;
   }
 }

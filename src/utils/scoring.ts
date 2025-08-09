@@ -204,11 +204,11 @@ export function getSubmission(id: string): Result | null {
 export async function saveResultToSupabase(result: Result): Promise<boolean> {
   try {
     const { error } = await supabase.from("quiz_results").insert({
-              id: result.id,
-        submission_data: result.submission as any,
-        scores: result.submission.scores as any,
-        top_majors: result.top as any,
-        reasons: result.reasons || null,
+      id: result.id,
+      submission_data: result.submission as any,
+      scores: result.submission.scores as any,
+      top_majors: result.top as any,
+      reasons: result.reasons || null,
     });
 
     if (error) {

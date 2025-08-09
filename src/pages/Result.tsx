@@ -2,16 +2,11 @@ import hero from "@/assets/hero-fpt.jpg";
 import majors from "@/data/majors.json";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
+
 import { useParams, useSearchParams } from "react-router-dom";
 import { QRModal } from "@/components/advisor/QRModal";
 import { TraitBarChart } from "@/components/advisor/Charts";
+import { SubjectModal } from "@/components/advisor/SubjectModal";
 import {
   decodeResultData,
   encodeResultData,
@@ -21,71 +16,6 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SEO } from "@/components/SEO";
 import * as htmlToImage from "html-to-image";
-
-// Component hiển thị curriculum cho một ngành
-function CurriculumDisplay({ major }: { major: any }) {
-  if (!major.curriculum) return null;
-
-  const semesters = Object.entries(major.curriculum).map(
-    ([key, subjects]: [string, any]) => ({
-      name: key,
-      subjects: subjects || [],
-    })
-  );
-
-  return (
-    <div className="mt-4">
-      <h4 className="font-semibold text-sm mb-3">📚 Chương trình học:</h4>
-      <Accordion type="single" collapsible className="w-full">
-        {semesters.map((semester, index) => (
-          <AccordionItem key={semester.name} value={semester.name}>
-            <AccordionTrigger className="text-sm">
-              Kỳ {index + 1} ({semester.subjects.length} môn)
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="grid grid-cols-1 gap-2">
-                {semester.subjects.map((subject: any, idx: number) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center text-xs p-2 bg-muted/50 rounded"
-                  >
-                    <span className="font-medium">{subject.name}</span>
-                    <div className="flex gap-2 items-center">
-                      <Badge variant="outline" className="text-xs">
-                        {subject.code}
-                      </Badge>
-                      <Badge variant="secondary" className="text-xs">
-                        {subject.credits} tín chỉ
-                      </Badge>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  );
-}
-
-// Component hiển thị skills cho một ngành
-function SkillsDisplay({ major }: { major: any }) {
-  if (!major.skills) return null;
-
-  return (
-    <div className="mt-3">
-      <h4 className="font-semibold text-sm mb-2">💡 Kỹ năng cần có:</h4>
-      <div className="flex flex-wrap gap-1">
-        {major.skills.map((skill: string, index: number) => (
-          <Badge key={index} variant="outline" className="text-xs">
-            {skill}
-          </Badge>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -108,7 +38,7 @@ export default function ResultPage() {
         setResult(result);
       }
     };
-    
+
     loadResult();
   }, [id, params]);
 
@@ -244,6 +174,7 @@ export default function ResultPage() {
                 Top 1 — {top1.name_vi} ({top1.name_en})
               </CardTitle>
             </CardHeader>
+
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-2">
@@ -251,16 +182,23 @@ export default function ResultPage() {
                   <p className="text-sm">
                     <strong>Vì sao phù hợp:</strong> {result.reasons}
                   </p>
+
+                  {/* Các nút hành động cho Top 1 */}
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs"
+                      disabled
+                    >
+                      🤖 Phân tích
+                    </Button>
+                    <SubjectModal major={top1} triggerText="📚 Xem môn học" />
+                  </div>
                 </div>
                 <div className="md:col-span-1">
                   <TraitBarChart traits={result.submission.traits} />
                 </div>
-              </div>
-
-              {/* Skills và Curriculum cho Top 1 */}
-              <div className="border-t pt-4">
-                <SkillsDisplay major={top1} />
-                <CurriculumDisplay major={top1} />
               </div>
             </CardContent>
           </Card>
@@ -273,9 +211,18 @@ export default function ResultPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm">{top2.description}</p>
-                  <div className="border-t pt-3">
-                    <SkillsDisplay major={top2} />
-                    <CurriculumDisplay major={top2} />
+
+                  {/* Các nút hành động */}
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs"
+                      disabled
+                    >
+                      🤖 Phân tích
+                    </Button>
+                    <SubjectModal major={top2} triggerText="📚 Xem môn học" />
                   </div>
                 </CardContent>
               </Card>
@@ -287,9 +234,18 @@ export default function ResultPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm">{top3.description}</p>
-                  <div className="border-t pt-3">
-                    <SkillsDisplay major={top3} />
-                    <CurriculumDisplay major={top3} />
+
+                  {/* Các nút hành động */}
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs"
+                      disabled
+                    >
+                      🤖 Phân tích
+                    </Button>
+                    <SubjectModal major={top3} triggerText="📚 Xem môn học" />
                   </div>
                 </CardContent>
               </Card>
