@@ -1,0 +1,32 @@
+[
+  {
+    "name":"Nguyễn Minh An",
+    "email":"",
+    "preferences":["Công nghệ", "Phân tích", "Làm việc độc lập"],
+    "traits":{ "logic":5, "creativity":3, "communication":3, "meticulous":4, "leadership":3, "patience":4 },
+    "scores":{ "math":9, "literature":6, "english":8, "informatics":9, "physics":8, "chemistry":7 },
+    "favorites":["Toán","Tin"],
+    "orientation":"Kỹ thuật",
+    "habits":"Tự học"
+  },
+  {
+    "name":"Trần Gia Hân",
+    "email":"",
+    "preferences":["Sáng tạo", "Truyền thông", "Làm việc nhóm"],
+    "traits":{ "logic":3, "creativity":5, "communication":5, "meticulous":3, "leadership":3, "patience":3 },
+    "scores":{ "math":6, "literature":8, "english":8, "informatics":6, "physics":5, "chemistry":5 },
+    "favorites":["Văn","Anh"],
+    "orientation":"Kinh tế - Truyền thông",
+    "habits":"Thực hành - dự án"
+  },
+  {
+    "name":"Phạm Quang Dũng",
+    "email":"",
+    "preferences":["Hệ thống", "Tối ưu", "Kỷ luật"],
+    "traits":{ "logic":4, "creativity":3, "communication":3, "meticulous":5, "leadership":4, "patience":5 },
+    "scores":{ "math":8, "literature":6, "english":7, "informatics":8, "physics":8, "chemistry":7 },
+    "favorites":["Toán","Vật lý"],
+    "orientation":"Vận hành - Kỹ thuật",
+    "habits":"Ghi chép - ôn tập"
+  }
+]

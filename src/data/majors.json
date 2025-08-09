@@ -1,0 +1,18 @@
+[
+  {"id":"software","name_vi":"Công nghệ thông tin - Ứng dụng phần mềm","name_en":"Software Applications","description":"Phát triển phần mềm, ứng dụng web/mobile, phân tích yêu cầu.","traits":[0.9,0.5,0.5,0.7,0.4,0.6]},
+  {"id":"webdev","name_vi":"Lập trình Web","name_en":"Web Development","description":"Xây dựng website front-end/back-end, tối ưu hiệu năng.","traits":[0.85,0.6,0.5,0.7,0.4,0.6]},
+  {"id":"ai","name_vi":"Trí tuệ nhân tạo","name_en":"Artificial Intelligence","description":"Học máy, xử lý dữ liệu, triển khai mô hình AI.","traits":[0.95,0.6,0.4,0.6,0.5,0.7]},
+  {"id":"cybersec","name_vi":"An toàn thông tin","name_en":"Cybersecurity","description":"Bảo mật hệ thống, phân tích rủi ro, kiểm thử xâm nhập.","traits":[0.9,0.4,0.5,0.8,0.5,0.8]},
+  {"id":"data","name_vi":"Phân tích dữ liệu","name_en":"Data Analytics","description":"Phân tích dữ liệu, trực quan hoá, hỗ trợ quyết định.","traits":[0.9,0.5,0.5,0.7,0.5,0.7]},
+  {"id":"graphic","name_vi":"Thiết kế đồ hoạ","name_en":"Graphic Design","description":"Thiết kế thương hiệu, UI/UX, minh hoạ, chuyển động.","traits":[0.4,0.95,0.5,0.6,0.4,0.5]},
+  {"id":"multimedia","name_vi":"Truyền thông đa phương tiện","name_en":"Multimedia","description":"Sáng tạo nội dung, dựng phim, nhiếp ảnh, truyền thông.","traits":[0.5,0.9,0.7,0.5,0.5,0.5]},
+  {"id":"marketing","name_vi":"Digital Marketing","name_en":"Digital Marketing","description":"Chiến lược số, nội dung, quảng cáo, tăng trưởng.","traits":[0.6,0.8,0.85,0.5,0.6,0.5]},
+  {"id":"emarket","name_vi":"Thương mại điện tử","name_en":"E-commerce","description":"Vận hành sàn, tối ưu chuyển đổi, logistics.","traits":[0.7,0.7,0.7,0.6,0.6,0.6]},
+  {"id":"business","name_vi":"Quản trị doanh nghiệp","name_en":"Business Administration","description":"Quản lý, vận hành, tối ưu nguồn lực, chiến lược.","traits":[0.7,0.6,0.8,0.6,0.85,0.6]},
+  {"id":"hotel","name_vi":"Quản trị khách sạn","name_en":"Hotel Management","description":"Dịch vụ khách hàng, vận hành, tiêu chuẩn chất lượng.","traits":[0.5,0.6,0.85,0.7,0.6,0.6]},
+  {"id":"tourism","name_vi":"Du lịch","name_en":"Tourism","description":"Lữ hành, hướng dẫn, trải nghiệm địa phương.","traits":[0.5,0.7,0.85,0.6,0.6,0.6]},
+  {"id":"mechatronics","name_vi":"Cơ điện tử","name_en":"Mechatronics","description":"Cơ khí, điện – điều khiển, tự động hoá.","traits":[0.85,0.55,0.45,0.8,0.5,0.75]},
+  {"id":"electronics","name_vi":"Điện tử – Viễn thông","name_en":"Electronics & Telecom","description":"Mạch, tín hiệu, mạng truyền thông.","traits":[0.85,0.5,0.5,0.75,0.5,0.7]},
+  {"id":"automotive","name_vi":"Kỹ thuật ô tô","name_en":"Automotive Engineering","description":"Hệ thống ô tô, chẩn đoán, bảo dưỡng.","traits":[0.8,0.5,0.5,0.85,0.55,0.75]},
+  {"id":"logistics","name_vi":"Logistics","name_en":"Logistics","description":"Chuỗi cung ứng, kho vận, tối ưu hoá.","traits":[0.75,0.55,0.6,0.8,0.65,0.7]}
+]
