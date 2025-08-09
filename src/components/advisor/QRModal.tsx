@@ -12,7 +12,7 @@ export function QRModal({ url }: { url: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Chia sẻ QR</Button>
+        <Button variant="hero">Chia sẻ QR</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

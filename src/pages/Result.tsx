@@ -138,7 +138,6 @@ export default function ResultPage() {
             </p>
           </div>
           <div className="flex gap-2">
-            <QRModal url={simpleUrl} />
             <Button
               variant="outline"
               onClick={() => {
@@ -151,9 +150,7 @@ export default function ResultPage() {
             <Button variant="soft" onClick={printPdf}>
               In PDF
             </Button>
-            <Button variant="hero" onClick={downloadPng}>
-              Tải infographic
-            </Button>
+            <QRModal url={simpleUrl} />
           </div>
         </div>
 

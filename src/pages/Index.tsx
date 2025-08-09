@@ -60,9 +60,6 @@ const Index = () => {
             </Card>
           ))}
         </div>
-        <div className="mt-10 text-center text-sm text-muted-foreground">
-          FPT Polytechnic
-        </div>
       </section>
 
       {/* Section thống kê ngành học */}

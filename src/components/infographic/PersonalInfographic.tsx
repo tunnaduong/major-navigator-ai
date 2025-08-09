@@ -2,7 +2,8 @@ import { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Share2 } from "lucide-react";
-import { Result } from "@/utils/scoring";
+import { Result, type Traits, type Scores } from "@/utils/scoring";
+import majors from "@/data/majors.json";
 import {
   RadarChart,
   Radar,
@@ -33,30 +34,38 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
     "Giao tiếp",
     "Lãnh đạo",
     "Tỉ mỉ",
-    "Hành động",
+    "Kiên nhẫn",
   ];
 
-  const radarData = result.submission.traits.map((value, index) => ({
+  const traitKeys = [
+    "logic",
+    "creativity",
+    "communication",
+    "leadership",
+    "meticulous",
+    "patience",
+  ];
+
+  const radarData = traitKeys.map((key, index) => ({
     trait: traitLabels[index],
-    value: value * 100, // Chuyển về thang 100
+    value: (result.submission.traits[key as keyof Traits] || 0) * 20, // Chuyển từ thang 1-5 về thang 100
     fullMark: 100,
   }));
 
   // Chuẩn bị dữ liệu cho bar chart (điểm số môn học)
-  const subjectLabels = [
-    "Toán",
-    "Văn",
-    "Anh",
-    "Lý",
-    "Hóa",
-    "Sinh",
-    "Sử",
-    "Địa",
+  const subjectMapping = [
+    { key: "math", label: "Toán" },
+    { key: "literature", label: "Văn" },
+    { key: "english", label: "Anh" },
+    { key: "physics", label: "Lý" },
+    { key: "chemistry", label: "Hóa" },
+    { key: "informatics", label: "Tin học" },
   ];
-  const barData = result.submission.scores
-    .map((score, index) => ({
-      subject: subjectLabels[index],
-      score: score,
+
+  const barData = subjectMapping
+    .map(({ key, label }) => ({
+      subject: label,
+      score: result.submission.scores[key as keyof Scores] || 0,
     }))
     .filter((item) => item.score > 0); // Chỉ hiển thị môn có điểm
 
