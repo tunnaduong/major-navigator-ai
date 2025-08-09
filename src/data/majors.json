@@ -405,14 +405,116 @@
     "name_vi": "Thương mại điện tử",
     "name_en": "E-commerce",
     "description": "Vận hành sàn, tối ưu chuyển đổi, logistics.",
-    "traits": [0.7, 0.7, 0.7, 0.6, 0.6, 0.6]
+    "traits": [0.7, 0.7, 0.7, 0.6, 0.6, 0.6],
+    "skills": [
+      "E-commerce Platform Management (Shopify, WooCommerce, Magento)",
+      "Digital Marketing và SEO/SEM",
+      "Data Analytics và Conversion Optimization",
+      "Supply Chain và Logistics Management",
+      "Customer Relationship Management (CRM)",
+      "Payment Gateway và Financial Systems"
+    ],
+    "curriculum": {
+      "ky1": [
+        {
+          "code": "ECOM101",
+          "name": "Nhập môn Thương mại điện tử",
+          "credits": 3
+        },
+        { "code": "BUS101", "name": "Nguyên lý quản trị", "credits": 3 },
+        { "code": "MKT101", "name": "Marketing căn bản", "credits": 3 },
+        { "code": "IT101", "name": "Tin học ứng dụng", "credits": 2 }
+      ],
+      "ky2": [
+        {
+          "code": "WEB201",
+          "name": "Xây dựng website thương mại",
+          "credits": 3
+        },
+        { "code": "DIGI201", "name": "Digital Marketing", "credits": 3 },
+        {
+          "code": "DATA201",
+          "name": "Phân tích dữ liệu bán hàng",
+          "credits": 3
+        },
+        { "code": "LAW201", "name": "Luật thương mại điện tử", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "PLAT301", "name": "E-commerce Platforms", "credits": 3 },
+        {
+          "code": "SCM301",
+          "name": "Supply Chain cho E-commerce",
+          "credits": 3
+        },
+        {
+          "code": "CRM301",
+          "name": "Customer Relationship Management",
+          "credits": 3
+        },
+        { "code": "PAY301", "name": "Payment Systems", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "OPTI401",
+          "name": "Conversion Rate Optimization",
+          "credits": 3
+        },
+        { "code": "INTER401", "name": "Cross-border E-commerce", "credits": 2 },
+        { "code": "MOBILE401", "name": "M-commerce", "credits": 2 },
+        { "code": "PROJ401", "name": "E-commerce Project", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập E-commerce", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "TREND501", "name": "E-commerce Trends", "credits": 2 }
+      ]
+    }
   },
   {
     "id": "business",
     "name_vi": "Quản trị doanh nghiệp",
     "name_en": "Business Administration",
     "description": "Quản lý, vận hành, tối ưu nguồn lực, chiến lược.",
-    "traits": [0.7, 0.6, 0.8, 0.6, 0.85, 0.6]
+    "traits": [0.7, 0.6, 0.8, 0.6, 0.85, 0.6],
+    "skills": [
+      "Strategic Planning và Business Development",
+      "Human Resource Management",
+      "Financial Management và Budgeting",
+      "Operations Management và Process Optimization",
+      "Leadership và Team Management",
+      "Business Analytics và Decision Making"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "BUS101", "name": "Nguyên lý quản trị", "credits": 3 },
+        { "code": "ECON101", "name": "Kinh tế học đại cương", "credits": 3 },
+        { "code": "ACC101", "name": "Kế toán căn bản", "credits": 3 },
+        { "code": "MATH101", "name": "Toán kinh tế", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "HR201", "name": "Quản trị nhân sự", "credits": 3 },
+        { "code": "FIN201", "name": "Quản trị tài chính", "credits": 3 },
+        { "code": "MKT201", "name": "Marketing management", "credits": 3 },
+        { "code": "LAW201", "name": "Luật doanh nghiệp", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "OPS301", "name": "Quản trị vận hành", "credits": 3 },
+        { "code": "STRAT301", "name": "Quản trị chiến lược", "credits": 3 },
+        { "code": "LEAD301", "name": "Leadership Skills", "credits": 3 },
+        { "code": "STATS301", "name": "Thống kê kinh doanh", "credits": 2 }
+      ],
+      "ky4": [
+        { "code": "PROJ401", "name": "Project Management", "credits": 3 },
+        { "code": "QUAL401", "name": "Quality Management", "credits": 2 },
+        { "code": "RISK401", "name": "Risk Management", "credits": 2 },
+        { "code": "NEGO401", "name": "Business Negotiation", "credits": 2 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập quản trị", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "ENTRE501", "name": "Entrepreneurship", "credits": 2 }
+      ]
+    }
   },
   {
     "id": "hotel",
@@ -818,6 +920,68 @@
       ],
       "ky5": [
         { "code": "MEC501", "name": "Dự án tốt nghiệp Cơ khí", "credits": 5 }
+      ]
+    }
+  },
+  {
+    "id": "accounting",
+    "name_vi": "Kế toán",
+    "name_en": "Accounting",
+    "description": "Quản lý tài chính, kiểm toán, báo cáo tài chính doanh nghiệp.",
+    "traits": [0.8, 0.4, 0.6, 0.9, 0.7, 0.8],
+    "skills": [
+      "Kế toán tài chính và quản trị",
+      "Phần mềm kế toán (MISA, SAP, Excel)",
+      "Kiểm toán và đánh giá rủi ro",
+      "Phân tích báo cáo tài chính",
+      "Thuế và tuân thủ pháp luật",
+      "Budgeting và Financial Planning"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "ACC101", "name": "Nguyên lý kế toán", "credits": 3 },
+        { "code": "ECON101", "name": "Kinh tế học đại cương", "credits": 3 },
+        { "code": "MATH101", "name": "Toán kinh tế", "credits": 3 },
+        { "code": "LAW101", "name": "Luật kinh tế", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "ACC201", "name": "Kế toán tài chính", "credits": 3 },
+        { "code": "ACC202", "name": "Kế toán quản trị", "credits": 3 },
+        { "code": "STAT201", "name": "Thống kê kinh doanh", "credits": 3 },
+        {
+          "code": "IT201",
+          "name": "Tin học ứng dụng trong kế toán",
+          "credits": 2
+        }
+      ],
+      "ky3": [
+        { "code": "ACC301", "name": "Kế toán doanh nghiệp", "credits": 3 },
+        { "code": "AUDIT301", "name": "Kiểm toán", "credits": 3 },
+        {
+          "code": "TAX301",
+          "name": "Thuế và chính sách tài khóa",
+          "credits": 3
+        },
+        { "code": "FIN301", "name": "Tài chính doanh nghiệp", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "ACC401",
+          "name": "Phân tích báo cáo tài chính",
+          "credits": 3
+        },
+        { "code": "BUDGET401", "name": "Lập ngân sách", "credits": 2 },
+        { "code": "COST401", "name": "Kế toán chi phí", "credits": 3 },
+        {
+          "code": "SOFT401",
+          "name": "Phần mềm kế toán chuyên nghiệp",
+          "credits": 2
+        }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập kế toán", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "CPA501", "name": "Chuẩn bị CPA", "credits": 2 }
       ]
     }
   }
