@@ -75,10 +75,11 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
 
     try {
       const canvas = await html2canvas(infographicRef.current, {
-        scale: 2,
-        backgroundColor: "#ffffff",
+        background: "#ffffff",
         useCORS: true,
         allowTaint: true,
+        width: infographicRef.current.scrollWidth,
+        height: infographicRef.current.scrollHeight,
       });
 
       const link = document.createElement("a");
@@ -96,11 +97,28 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
   const shareInfographic = async () => {
     if (navigator.share) {
       try {
+        const allPreferences = [
+          ...result.submission.preferences,
+          ...(result.submission.customPreference
+            ? result.submission.customPreference
+                .split(",")
+                .map((item) => item.trim())
+                .filter((item) => item.length > 0)
+            : []),
+        ];
+
         await navigator.share({
           title: `Tư vấn ngành học cho ${result.submission.name}`,
-          text: `Tôi vừa hoàn thành bài test tư vấn ngành học tại FPT Polytechnic! Top 3 ngành phù hợp với tôi là: ${result.top
+          text: `Tôi vừa hoàn thành bài test tư vấn ngành học tại FPT Polytechnic! 
+          
+Sở thích của tôi: ${allPreferences.join(", ")}
+
+Top 3 ngành phù hợp với tôi là: ${result.top
             .slice(0, 3)
-            .map((m) => m.name_vi)
+            .map((m) => {
+              const majorData = majors.find((major) => major.id === m.majorId);
+              return majorData?.name_vi || "Unknown";
+            })
             .join(", ")}`,
           url: window.location.href,
         });
@@ -157,22 +175,46 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
             🎯 Top 3 ngành học phù hợp
           </h2>
           <div className="grid gap-4">
-            {result.top.slice(0, 3).map((major, index) => (
-              <div
-                key={major.id}
-                className={`p-4 rounded-lg border-l-4 ${
-                  index === 0
-                    ? "border-yellow-400 bg-yellow-50"
-                    : index === 1
-                    ? "border-gray-400 bg-gray-50"
-                    : "border-orange-400 bg-orange-50"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`text-2xl ${
+            {result.top.slice(0, 3).map((major, index) => {
+              const majorData = majors.find((m) => m.id === major.majorId);
+              if (!majorData) return null;
+
+              return (
+                <div
+                  key={major.majorId}
+                  className={`p-4 rounded-lg border-l-4 ${
+                    index === 0
+                      ? "border-yellow-400 bg-yellow-50"
+                      : index === 1
+                      ? "border-gray-400 bg-gray-50"
+                      : "border-orange-400 bg-orange-50"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-2xl ${
+                            index === 0
+                              ? "text-yellow-600"
+                              : index === 1
+                              ? "text-gray-600"
+                              : "text-orange-600"
+                          }`}
+                        >
+                          {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                        </span>
+                        <h3 className="font-semibold text-lg text-gray-900">
+                          {majorData.name_vi}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                        {majorData.description}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div
+                        className={`text-2xl font-bold ${
                           index === 0
                             ? "text-yellow-600"
                             : index === 1
@@ -180,33 +222,14 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
                             : "text-orange-600"
                         }`}
                       >
-                        {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
-                      </span>
-                      <h3 className="font-semibold text-lg text-gray-900">
-                        {major.name_vi}
-                      </h3>
+                        {((major.score || 0) * 100).toFixed(1)}%
+                      </div>
+                      <div className="text-xs text-gray-500">Phù hợp</div>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">
-                      {major.description}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <div
-                      className={`text-2xl font-bold ${
-                        index === 0
-                          ? "text-yellow-600"
-                          : index === 1
-                          ? "text-gray-600"
-                          : "text-orange-600"
-                      }`}
-                    >
-                      {major.score?.toFixed(1)}%
-                    </div>
-                    <div className="text-xs text-gray-500">Phù hợp</div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -289,11 +312,19 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
                     {pref}
                   </span>
                 ))}
-                {result.submission.customPreference && (
-                  <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
-                    {result.submission.customPreference}
-                  </span>
-                )}
+                {result.submission.customPreference &&
+                  result.submission.customPreference
+                    .split(",")
+                    .map((item) => item.trim())
+                    .filter((item) => item.length > 0)
+                    .map((item, index) => (
+                      <span
+                        key={`custom-${index}`}
+                        className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                      >
+                        {item}
+                      </span>
+                    ))}
               </div>
             </CardContent>
           </Card>
@@ -353,7 +384,7 @@ const PersonalInfographic = ({ result }: PersonalInfographicProps) => {
           </div>
           <div className="text-xs text-gray-400 mt-1">
             Hệ thống tư vấn ngành học thông minh •
-            https://major-navigator.fpt.edu.vn
+            https://major-advisor.fpt.edu.vn
           </div>
         </div>
       </div>

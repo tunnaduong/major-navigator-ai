@@ -61,7 +61,7 @@ export const Header = () => {
             Lịch sử
           </NavLink>
           <NavLink to="/about" className={getNavCls}>
-            About
+            Giới thiệu
           </NavLink>
           <ThemeToggle />
         </nav>

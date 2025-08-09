@@ -22,9 +22,10 @@ export function TagSelect({
   const toggle = (opt: string) => {
     if (opt === "Khác") {
       setShowOtherInput(!showOtherInput);
-      if (showOtherInput && otherValue) {
-        // Nếu đang ẩn input và có giá trị, xóa nó khỏi values
-        onChange(values.filter((v) => v !== otherValue));
+      if (showOtherInput) {
+        // Khi ẩn input, xóa custom value và chỉ giữ lại các options gốc
+        const filteredValues = values.filter((v) => options.includes(v));
+        onChange(filteredValues);
         onOtherChange?.("");
       }
       return;
@@ -37,15 +38,10 @@ export function TagSelect({
   const handleOtherInputChange = (inputValue: string) => {
     onOtherChange?.(inputValue);
 
-    // Xóa giá trị cũ nếu có
-    const filteredValues = values.filter((v) => v !== otherValue);
-
-    // Thêm giá trị mới nếu không rỗng
-    if (inputValue.trim()) {
-      onChange([...filteredValues, inputValue.trim()]);
-    } else {
-      onChange(filteredValues);
-    }
+    // Xóa các giá trị custom cũ khỏi values để tránh trùng lặp
+    // Chỉ giữ lại các giá trị từ options gốc
+    const filteredValues = values.filter((v) => options.includes(v));
+    onChange(filteredValues);
   };
 
   const isOtherSelected = showOtherInput && otherValue.trim() !== "";

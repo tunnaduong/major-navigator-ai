@@ -33,7 +33,7 @@ export default function Admin() {
 
       <Card>
         <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <CardTitle>Submissions (Local)</CardTitle>
+          <CardTitle>Lịch sử tư vấn</CardTitle>
           <Input
             placeholder="Tìm theo tên..."
             value={q}

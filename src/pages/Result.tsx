@@ -317,6 +317,19 @@ export default function ResultPage() {
                             {pref}
                           </span>
                         ))}
+                        {result.submission.customPreference &&
+                          result.submission.customPreference
+                            .split(",")
+                            .map((item) => item.trim())
+                            .filter((item) => item.length > 0)
+                            .map((item, index) => (
+                              <span
+                                key={`custom-${index}`}
+                                className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm"
+                              >
+                                {item}
+                              </span>
+                            ))}
                       </div>
                     </div>
                     {result.submission.favorites.length > 0 && (
@@ -393,7 +406,7 @@ export default function ResultPage() {
                             </div>
                             <div className="text-right">
                               <div className="text-2xl font-bold text-blue-600">
-                                {major.score?.toFixed(1)}%
+                                {((major.score || 0) * 100).toFixed(1)}%
                               </div>
                               <div className="text-xs text-gray-500">
                                 Độ phù hợp

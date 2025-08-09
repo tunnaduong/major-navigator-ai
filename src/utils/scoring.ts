@@ -23,6 +23,7 @@ export type Submission = {
   name: string;
   email?: string;
   preferences: string[];
+  customPreference?: string; // Sở thích tùy chỉnh
   traits: Traits;
   scores: Scores;
   favorites: string[]; // 1-2 subjects

@@ -153,6 +153,7 @@ export default function Quiz() {
       name,
       email,
       preferences,
+      customPreference: customPreference.trim() || undefined,
       traits,
       scores,
       favorites,
@@ -161,10 +162,10 @@ export default function Quiz() {
       createdAt: Date.now(),
     };
     const result = computeScores(submission);
-    
+
     // Lưu vào cả localStorage và Supabase
     await saveResult(result);
-    
+
     navigate(`/result/${id}`);
   };
 
@@ -351,7 +352,16 @@ export default function Quiz() {
                 <strong>Họ tên:</strong> {name}
               </div>
               <div>
-                <strong>Sở thích:</strong> {preferences.join(", ")}
+                <strong>Sở thích:</strong>{" "}
+                {[
+                  ...preferences,
+                  ...(customPreference
+                    ? customPreference
+                        .split(",")
+                        .map((item) => item.trim())
+                        .filter((item) => item.length > 0)
+                    : []),
+                ].join(", ")}
               </div>
               <div>
                 <strong>Traits:</strong>{" "}
