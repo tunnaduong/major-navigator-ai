@@ -7,6 +7,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { QRModal } from "@/components/advisor/QRModal";
 import { TraitBarChart } from "@/components/advisor/Charts";
 import { SubjectModal } from "@/components/advisor/SubjectModal";
+import { AIAnalysisModal } from "@/components/advisor/AIAnalysisModal";
 import {
   decodeResultData,
   encodeResultData,
@@ -185,14 +186,19 @@ export default function ResultPage() {
 
                   {/* Các nút hành động cho Top 1 */}
                   <div className="flex gap-2 pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-xs"
-                      disabled
-                    >
-                      🤖 Phân tích
-                    </Button>
+                    <AIAnalysisModal
+                      major={top1}
+                      userProfile={{
+                        name: result.submission.name,
+                        preferences: result.submission.preferences,
+                        traits: result.submission.traits,
+                        scores: result.submission.scores,
+                        favorites: result.submission.favorites,
+                        orientation: result.submission.orientation,
+                        habits: result.submission.habits,
+                      }}
+                      triggerText="🤖 Phân tích"
+                    />
                     <SubjectModal major={top1} triggerText="📚 Xem môn học" />
                   </div>
                 </div>
@@ -214,14 +220,19 @@ export default function ResultPage() {
 
                   {/* Các nút hành động */}
                   <div className="flex gap-2 pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-xs"
-                      disabled
-                    >
-                      🤖 Phân tích
-                    </Button>
+                    <AIAnalysisModal
+                      major={top2}
+                      userProfile={{
+                        name: result.submission.name,
+                        preferences: result.submission.preferences,
+                        traits: result.submission.traits,
+                        scores: result.submission.scores,
+                        favorites: result.submission.favorites,
+                        orientation: result.submission.orientation,
+                        habits: result.submission.habits,
+                      }}
+                      triggerText="🤖 Phân tích"
+                    />
                     <SubjectModal major={top2} triggerText="📚 Xem môn học" />
                   </div>
                 </CardContent>
@@ -237,14 +248,19 @@ export default function ResultPage() {
 
                   {/* Các nút hành động */}
                   <div className="flex gap-2 pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-xs"
-                      disabled
-                    >
-                      🤖 Phân tích
-                    </Button>
+                    <AIAnalysisModal
+                      major={top3}
+                      userProfile={{
+                        name: result.submission.name,
+                        preferences: result.submission.preferences,
+                        traits: result.submission.traits,
+                        scores: result.submission.scores,
+                        favorites: result.submission.favorites,
+                        orientation: result.submission.orientation,
+                        habits: result.submission.habits,
+                      }}
+                      triggerText="🤖 Phân tích"
+                    />
                     <SubjectModal major={top3} triggerText="📚 Xem môn học" />
                   </div>
                 </CardContent>

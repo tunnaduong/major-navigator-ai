@@ -5,6 +5,7 @@ export {
   createEmbeddings,
   analyzeText,
   getMajorRecommendation,
+  getDetailedMajorAnalysis,
   type ChatMessage,
   type ChatCompletionOptions,
 } from "./services";
