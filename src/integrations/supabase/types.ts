@@ -14,7 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      quiz_results: {
+        Row: {
+          id: string
+          submission_data: Json
+          scores: Json
+          top_majors: Json
+          reasons: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          submission_data: Json
+          scores: Json
+          top_majors: Json
+          reasons?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          submission_data?: Json
+          scores?: Json
+          top_majors?: Json
+          reasons?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

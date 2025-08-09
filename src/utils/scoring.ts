@@ -1,8 +1,22 @@
 import majors from "@/data/majors.json";
+import { supabase } from "@/integrations/supabase/client";
 
-export type TraitKey = "logic"|"creativity"|"communication"|"meticulous"|"leadership"|"patience";
+export type TraitKey =
+  | "logic"
+  | "creativity"
+  | "communication"
+  | "meticulous"
+  | "leadership"
+  | "patience";
 export type Traits = Record<TraitKey, number>; // 1-5
-export type Scores = { math:number; literature:number; english:number; informatics:number; physics:number; chemistry:number };
+export type Scores = {
+  math: number;
+  literature: number;
+  english: number;
+  informatics: number;
+  physics: number;
+  chemistry: number;
+};
 
 export type Submission = {
   id: string;
@@ -27,42 +41,69 @@ export type Major = {
 
 export type Result = {
   id: string;
-  top: Array<{ majorId:string; score:number }>;
+  top: Array<{ majorId: string; score: number }>;
   reasons: string;
   submission: Submission;
 };
 
-const TRAIT_ORDER: TraitKey[] = ["logic","creativity","communication","meticulous","leadership","patience"];
+const TRAIT_ORDER: TraitKey[] = [
+  "logic",
+  "creativity",
+  "communication",
+  "meticulous",
+  "leadership",
+  "patience",
+];
 
-function normalizeTraits(t: Traits){
-  return TRAIT_ORDER.map(k => (t[k] - 1) / 4); // 0..1
+function normalizeTraits(t: Traits) {
+  return TRAIT_ORDER.map((k) => (t[k] - 1) / 4); // 0..1
 }
 
-function subjectAffinityMap(majorId:string, sub: Scores, fav: string[]) {
+function subjectAffinityMap(majorId: string, sub: Scores, fav: string[]) {
   // simple heuristic mapping
   const s = sub;
-  const favBoost = (subj:string) => fav.includes(subj) ? 1.1 : 1.0;
-  const avg = (a:number,b:number)=> (a+b)/2;
-  const core = (():number => {
-    switch(majorId){
-      case "software": case "webdev": return avg(s.math, s.informatics) * favBoost("Toán");
-      case "ai": case "data": return avg(s.math, s.informatics) * favBoost("Toán");
-      case "cybersec": return avg(s.math, s.informatics) * favBoost("Tin");
-      case "graphic": case "multimedia": return avg(s.english, s.literature) * favBoost("Văn");
-      case "marketing": case "emarket": return avg(s.english, s.literature);
-      case "business": return avg(s.literature, s.english);
-      case "hotel": case "tourism": return avg(s.english, s.literature);
-      case "mechatronics": case "electronics": case "automotive": return avg(s.math, s.physics) * favBoost("Vật lý");
-      case "logistics": return avg(s.math, s.english);
-      default: return (s.math + s.english + s.informatics)/3;
+  const favBoost = (subj: string) => (fav.includes(subj) ? 1.1 : 1.0);
+  const avg = (a: number, b: number) => (a + b) / 2;
+  const core = ((): number => {
+    switch (majorId) {
+      case "software":
+      case "webdev":
+        return avg(s.math, s.informatics) * favBoost("Toán");
+      case "ai":
+      case "data":
+        return avg(s.math, s.informatics) * favBoost("Toán");
+      case "cybersec":
+        return avg(s.math, s.informatics) * favBoost("Tin");
+      case "graphic":
+      case "multimedia":
+        return avg(s.english, s.literature) * favBoost("Văn");
+      case "marketing":
+      case "emarket":
+        return avg(s.english, s.literature);
+      case "business":
+        return avg(s.literature, s.english);
+      case "hotel":
+      case "tourism":
+        return avg(s.english, s.literature);
+      case "mechatronics":
+      case "electronics":
+      case "automotive":
+      case "mechanical":
+        return avg(s.math, s.physics) * favBoost("Vật lý");
+      case "game":
+        return avg(s.math, s.informatics) * favBoost("Tin");
+      case "logistics":
+        return avg(s.math, s.english);
+      default:
+        return (s.math + s.english + s.informatics) / 3;
     }
   })();
   return core / 10; // normalize to 0..1
 }
 
-function orientationBoost(majorId:string, orientation:string){
+function orientationBoost(majorId: string, orientation: string) {
   const m = orientation.toLowerCase();
-  const pairs:[string,RegExp][] = [
+  const pairs: [string, RegExp][] = [
     ["ai", /(ai|trí tuệ nhân tạo|dữ liệu|data|machine)/],
     ["data", /(data|dữ liệu)/],
     ["software", /(kỹ thuật|it|phần mềm|software|dev)/],
@@ -73,58 +114,82 @@ function orientationBoost(majorId:string, orientation:string){
     ["emarket", /(thương mại|e-?commerce)/],
     ["business", /(quản trị|business|doanh)/],
     ["hotel|tourism", /(khách sạn|du lịch)/],
-    ["mechatronics|electronics|automotive", /(kỹ thuật|cơ khí|điện|ô tô)/],
-    ["logistics", /(logistics|chuỗi cung ứng)/]
+    [
+      "mechatronics|electronics|automotive|mechanical",
+      /(kỹ thuật|cơ khí|điện|ô tô)/,
+    ],
+    ["game", /(game|trò chơi|unity)/],
+    ["logistics", /(logistics|chuỗi cung ứng)/],
   ];
   return pairs.some(([id, r]) => id.includes(majorId) && r.test(m)) ? 0.06 : 0;
 }
 
-export function computeScores(sub: Submission){
+export function computeScores(sub: Submission) {
   const user = normalizeTraits(sub.traits);
-  const results = (majors as Major[]).map(m => {
-    const traitScore = m.traits.reduce((acc, v, i) => acc + v * user[i], 0) / m.traits.length; // 0..1
-    const subjectScore = subjectAffinityMap(m.id, sub.scores, sub.favorites);
-    const orient = orientationBoost(m.id, sub.orientation);
-    // weights
-    const score = traitScore * 0.6 + subjectScore * 0.34 + orient * 0.06;
-    return { majorId: m.id, score };
-  }).sort((a,b)=> b.score - a.score);
+  const results = (majors as Major[])
+    .map((m) => {
+      const traitScore =
+        m.traits.reduce((acc, v, i) => acc + v * user[i], 0) / m.traits.length; // 0..1
+      const subjectScore = subjectAffinityMap(m.id, sub.scores, sub.favorites);
+      const orient = orientationBoost(m.id, sub.orientation);
+      // weights
+      const score = traitScore * 0.6 + subjectScore * 0.34 + orient * 0.06;
+      return { majorId: m.id, score };
+    })
+    .sort((a, b) => b.score - a.score);
 
   const reasons = mockReasons(sub);
-  return { id: sub.id, top: results.slice(0,3), reasons, submission: sub } as Result;
+  return {
+    id: sub.id,
+    top: results.slice(0, 3),
+    reasons,
+    submission: sub,
+  } as Result;
 }
 
-export function mockReasons(sub: Submission){
-  const strong = Object.entries(sub.traits).sort((a,b)=> b[1]-a[1]).slice(0,2).map(([k])=>k);
+export function mockReasons(sub: Submission) {
+  const strong = Object.entries(sub.traits)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 2)
+    .map(([k]) => k);
   const fav = sub.favorites.join(", ");
-  return `Vì sao phù hợp: Bạn mạnh về ${strong.join(" & ")}, cùng điểm mạnh ở các môn yêu thích (${fav}). Kết hợp định hướng "${sub.orientation}" nên các ngành Top phù hợp với bạn.`;
+  return `Vì sao phù hợp: Bạn mạnh về ${strong.join(
+    " & "
+  )}, cùng điểm mạnh ở các môn yêu thích (${fav}). Kết hợp định hướng "${
+    sub.orientation
+  }" nên các ngành Top phù hợp với bạn.`;
 }
 
-export function generateResultId(){
+export function generateResultId() {
   return Math.random().toString(36).slice(2, 10);
 }
 
-export function encodeResultData(result: Result){
+export function encodeResultData(result: Result) {
   const str = JSON.stringify(result);
   return btoa(unescape(encodeURIComponent(str)));
 }
 export function decodeResultData(param: string): Result | null {
-  try{
+  try {
     const json = decodeURIComponent(escape(atob(param)));
     return JSON.parse(json);
-  }catch{
+  } catch {
     return null;
   }
 }
 
-export function saveSubmission(result: Result){
+export function saveSubmission(result: Result) {
   const key = `advisor_result_${result.id}`;
   localStorage.setItem(key, JSON.stringify(result));
   const listKey = "advisor_results_index";
   const idx = JSON.parse(localStorage.getItem(listKey) || "[]");
-  const exists = idx.find((i: any)=> i.id === result.id);
-  if(!exists){
-    idx.unshift({ id: result.id, name: result.submission.name, createdAt: result.submission.createdAt, top: result.top });
+  const exists = idx.find((i: any) => i.id === result.id);
+  if (!exists) {
+    idx.unshift({
+      id: result.id,
+      name: result.submission.name,
+      createdAt: result.submission.createdAt,
+      top: result.top,
+    });
     localStorage.setItem(listKey, JSON.stringify(idx));
   }
 }
@@ -132,5 +197,80 @@ export function saveSubmission(result: Result){
 export function getSubmission(id: string): Result | null {
   const key = `advisor_result_${id}`;
   const raw = localStorage.getItem(key);
-  return raw ? JSON.parse(raw) as Result : null;
+  return raw ? (JSON.parse(raw) as Result) : null;
+}
+
+// Lưu kết quả vào Supabase
+export async function saveResultToSupabase(result: Result): Promise<boolean> {
+  try {
+    const { error } = await supabase.from("quiz_results").insert({
+              id: result.id,
+        submission_data: result.submission as any,
+        scores: result.submission.scores as any,
+        top_majors: result.top as any,
+        reasons: result.reasons || null,
+    });
+
+    if (error) {
+      console.error("Lỗi khi lưu vào Supabase:", error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Lỗi khi lưu vào Supabase:", error);
+    return false;
+  }
+}
+
+// Load kết quả từ Supabase
+export async function getResultFromSupabase(
+  id: string
+): Promise<Result | null> {
+  try {
+    const { data, error } = await supabase
+      .from("quiz_results")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error || !data) {
+      console.error("Không tìm thấy kết quả trong Supabase:", error);
+      return null;
+    }
+
+    // Rebuild Result object từ database
+    const result: Result = {
+      id: data.id,
+      submission: data.submission_data as any,
+      top: data.top_majors as any,
+      reasons: data.reasons || "",
+    };
+
+    return result;
+  } catch (error) {
+    console.error("Lỗi khi load từ Supabase:", error);
+    return null;
+  }
+}
+
+// Function tổng hợp: lưu vào cả localStorage và Supabase
+export async function saveResult(result: Result): Promise<void> {
+  // Lưu vào localStorage (để hoạt động offline)
+  saveSubmission(result);
+
+  // Lưu vào Supabase (để chia sẻ QR)
+  await saveResultToSupabase(result);
+}
+
+// Function tổng hợp: load từ localStorage trước, Supabase sau
+export async function getResult(id: string): Promise<Result | null> {
+  // Thử load từ localStorage trước (nhanh hơn)
+  const localResult = getSubmission(id);
+  if (localResult) {
+    return localResult;
+  }
+
+  // Nếu không có trong localStorage, thử load từ Supabase
+  return await getResultFromSupabase(id);
 }

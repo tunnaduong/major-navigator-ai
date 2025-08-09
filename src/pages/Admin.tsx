@@ -1,26 +1,61 @@
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import majors from "@/data/majors.json";
 import { Link } from "react-router-dom";
+import { setupDatabase, testSupabaseConnection } from "@/utils/setupDatabase";
 
 export default function Admin(){
   const [q, setQ] = useState("");
   const [items, setItems] = useState<any[]>([]);
+  const [dbStatus, setDbStatus] = useState<string>("");
+
   useEffect(()=>{
     const listKey = "advisor_results_index";
     const raw = localStorage.getItem(listKey);
     setItems(raw? JSON.parse(raw): []);
   },[]);
 
+  const handleTestConnection = async () => {
+    setDbStatus("Đang kiểm tra...");
+    const isConnected = await testSupabaseConnection();
+    if (isConnected) {
+      const isSetup = await setupDatabase();
+      setDbStatus(isSetup ? "✅ Sẵn sàng sử dụng" : "⚠️ Cần chạy migration");
+    } else {
+      setDbStatus("❌ Lỗi kết nối");
+    }
+  };
+
   const filtered = useMemo(()=> items.filter((i)=> i.name.toLowerCase().includes(q.toLowerCase())), [q, items]);
 
   const topName = (id:string)=> majors.find(m=> m.id === id)?.name_vi || id;
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 space-y-6">
       <SEO title="Admin – Submissions" description="Danh sách submissions demo (lưu local)." />
+      
+      {/* Supabase Status Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>🗄️ Supabase Database Status</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex gap-3 items-center">
+            <Button onClick={handleTestConnection} variant="outline">
+              Test Kết nối Supabase
+            </Button>
+            {dbStatus && <span className="text-sm">{dbStatus}</span>}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            QR code cần Supabase để hoạt động trên mọi thiết bị. Nếu hiện "⚠️ Cần chạy migration", 
+            vui lòng copy SQL từ console và chạy trong Supabase dashboard.
+          </p>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle>Submissions (Local)</CardTitle>

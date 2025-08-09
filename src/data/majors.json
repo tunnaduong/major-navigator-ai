@@ -1,18 +1,824 @@
 [
-  {"id":"software","name_vi":"Công nghệ thông tin - Ứng dụng phần mềm","name_en":"Software Applications","description":"Phát triển phần mềm, ứng dụng web/mobile, phân tích yêu cầu.","traits":[0.9,0.5,0.5,0.7,0.4,0.6]},
-  {"id":"webdev","name_vi":"Lập trình Web","name_en":"Web Development","description":"Xây dựng website front-end/back-end, tối ưu hiệu năng.","traits":[0.85,0.6,0.5,0.7,0.4,0.6]},
-  {"id":"ai","name_vi":"Trí tuệ nhân tạo","name_en":"Artificial Intelligence","description":"Học máy, xử lý dữ liệu, triển khai mô hình AI.","traits":[0.95,0.6,0.4,0.6,0.5,0.7]},
-  {"id":"cybersec","name_vi":"An toàn thông tin","name_en":"Cybersecurity","description":"Bảo mật hệ thống, phân tích rủi ro, kiểm thử xâm nhập.","traits":[0.9,0.4,0.5,0.8,0.5,0.8]},
-  {"id":"data","name_vi":"Phân tích dữ liệu","name_en":"Data Analytics","description":"Phân tích dữ liệu, trực quan hoá, hỗ trợ quyết định.","traits":[0.9,0.5,0.5,0.7,0.5,0.7]},
-  {"id":"graphic","name_vi":"Thiết kế đồ hoạ","name_en":"Graphic Design","description":"Thiết kế thương hiệu, UI/UX, minh hoạ, chuyển động.","traits":[0.4,0.95,0.5,0.6,0.4,0.5]},
-  {"id":"multimedia","name_vi":"Truyền thông đa phương tiện","name_en":"Multimedia","description":"Sáng tạo nội dung, dựng phim, nhiếp ảnh, truyền thông.","traits":[0.5,0.9,0.7,0.5,0.5,0.5]},
-  {"id":"marketing","name_vi":"Digital Marketing","name_en":"Digital Marketing","description":"Chiến lược số, nội dung, quảng cáo, tăng trưởng.","traits":[0.6,0.8,0.85,0.5,0.6,0.5]},
-  {"id":"emarket","name_vi":"Thương mại điện tử","name_en":"E-commerce","description":"Vận hành sàn, tối ưu chuyển đổi, logistics.","traits":[0.7,0.7,0.7,0.6,0.6,0.6]},
-  {"id":"business","name_vi":"Quản trị doanh nghiệp","name_en":"Business Administration","description":"Quản lý, vận hành, tối ưu nguồn lực, chiến lược.","traits":[0.7,0.6,0.8,0.6,0.85,0.6]},
-  {"id":"hotel","name_vi":"Quản trị khách sạn","name_en":"Hotel Management","description":"Dịch vụ khách hàng, vận hành, tiêu chuẩn chất lượng.","traits":[0.5,0.6,0.85,0.7,0.6,0.6]},
-  {"id":"tourism","name_vi":"Du lịch","name_en":"Tourism","description":"Lữ hành, hướng dẫn, trải nghiệm địa phương.","traits":[0.5,0.7,0.85,0.6,0.6,0.6]},
-  {"id":"mechatronics","name_vi":"Cơ điện tử","name_en":"Mechatronics","description":"Cơ khí, điện – điều khiển, tự động hoá.","traits":[0.85,0.55,0.45,0.8,0.5,0.75]},
-  {"id":"electronics","name_vi":"Điện tử – Viễn thông","name_en":"Electronics & Telecom","description":"Mạch, tín hiệu, mạng truyền thông.","traits":[0.85,0.5,0.5,0.75,0.5,0.7]},
-  {"id":"automotive","name_vi":"Kỹ thuật ô tô","name_en":"Automotive Engineering","description":"Hệ thống ô tô, chẩn đoán, bảo dưỡng.","traits":[0.8,0.5,0.5,0.85,0.55,0.75]},
-  {"id":"logistics","name_vi":"Logistics","name_en":"Logistics","description":"Chuỗi cung ứng, kho vận, tối ưu hoá.","traits":[0.75,0.55,0.6,0.8,0.65,0.7]}
+  {
+    "id": "software",
+    "name_vi": "Công nghệ thông tin - Ứng dụng phần mềm",
+    "name_en": "Software Applications",
+    "description": "Phát triển phần mềm, ứng dụng web/mobile, phân tích yêu cầu.",
+    "traits": [0.9, 0.5, 0.5, 0.7, 0.4, 0.6],
+    "skills": [
+      "Lập trình C/C++, Java, Python",
+      "Thiết kế cơ sở dữ liệu và quản lý dữ liệu",
+      "Phát triển ứng dụng web và mobile",
+      "Kiểm thử phần mềm và đảm bảo chất lượng",
+      "Quản lý dự án phần mềm",
+      "Phân tích thiết kế hệ thống"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "PRF192", "name": "Lập trình căn bản", "credits": 3 },
+        { "code": "MAE101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "CEA201", "name": "Kiến trúc máy tính", "credits": 3 },
+        { "code": "CSI104", "name": "Nhập môn tin học", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "PRO192", "name": "Lập trình hướng đối tượng", "credits": 3 },
+        { "code": "MAD101", "name": "Toán rời rạc", "credits": 3 },
+        { "code": "OSG202", "name": "Hệ điều hành", "credits": 3 },
+        { "code": "NWC203", "name": "Mạng máy tính", "credits": 3 }
+      ],
+      "ky3": [
+        {
+          "code": "CSD201",
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "credits": 3
+        },
+        { "code": "DBI202", "name": "Hệ quản trị cơ sở dữ liệu", "credits": 3 },
+        { "code": "LAB211", "name": "Thực hành OOP", "credits": 1 },
+        { "code": "JPD113", "name": "Tiếng Nhật sơ cấp", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "SWE201",
+          "name": "Nhập môn công nghệ phần mềm",
+          "credits": 3
+        },
+        { "code": "PRJ301", "name": "Dự án Java web", "credits": 3 },
+        { "code": "MAS291", "name": "Xác suất thống kê", "credits": 2 },
+        {
+          "code": "WED201",
+          "name": "Lập trình web với HTML5 và CSS3",
+          "credits": 3
+        }
+      ],
+      "ky5": [
+        { "code": "SWT301", "name": "Kiểm thử phần mềm", "credits": 3 },
+        { "code": "SWP391", "name": "Dự án phần mềm", "credits": 3 },
+        { "code": "IOT102", "name": "Internet vạn vật", "credits": 3 },
+        { "code": "MLN111", "name": "Tư tưởng Hồ Chí Minh", "credits": 2 }
+      ]
+    }
+  },
+  {
+    "id": "webdev",
+    "name_vi": "Lập trình Web",
+    "name_en": "Web Development",
+    "description": "Xây dựng website front-end/back-end, tối ưu hiệu năng.",
+    "traits": [0.85, 0.6, 0.5, 0.7, 0.4, 0.6],
+    "skills": [
+      "HTML5, CSS3, JavaScript ES6+",
+      "Framework React, Vue.js, Angular",
+      "Backend với Node.js, PHP, Python",
+      "Quản lý cơ sở dữ liệu MySQL, MongoDB",
+      "API RESTful và GraphQL",
+      "Responsive design và UX/UI"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "WEB101", "name": "Nhập môn lập trình web", "credits": 3 },
+        { "code": "HTML101", "name": "HTML và CSS cơ bản", "credits": 3 },
+        { "code": "MAE101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "ENG101", "name": "Tiếng Anh chuyên ngành", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "JS201", "name": "JavaScript căn bản", "credits": 3 },
+        { "code": "CSS201", "name": "CSS nâng cao và Bootstrap", "credits": 3 },
+        { "code": "DBI201", "name": "Cơ sở dữ liệu cho web", "credits": 3 },
+        { "code": "UXD101", "name": "UX/UI Design cơ bản", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "FJS301", "name": "Frontend với React/Vue", "credits": 3 },
+        { "code": "BJS301", "name": "Backend với Node.js", "credits": 3 },
+        { "code": "WES301", "name": "Web Security", "credits": 2 },
+        { "code": "GIT201", "name": "Version Control với Git", "credits": 1 }
+      ],
+      "ky4": [
+        { "code": "API401", "name": "RESTful API Development", "credits": 3 },
+        { "code": "MOB401", "name": "Mobile Web Development", "credits": 3 },
+        {
+          "code": "OPT401",
+          "name": "Web Performance Optimization",
+          "credits": 2
+        },
+        { "code": "CMS401", "name": "Content Management Systems", "credits": 2 }
+      ],
+      "ky5": [
+        { "code": "FWP501", "name": "Full-stack Web Project", "credits": 4 },
+        { "code": "ECO501", "name": "E-commerce Development", "credits": 3 },
+        { "code": "DEV501", "name": "DevOps cho Web", "credits": 2 },
+        { "code": "INT501", "name": "Thực tập doanh nghiệp", "credits": 3 }
+      ]
+    }
+  },
+  {
+    "id": "ai",
+    "name_vi": "Trí tuệ nhân tạo",
+    "name_en": "Artificial Intelligence",
+    "description": "Học máy, xử lý dữ liệu, triển khai mô hình AI.",
+    "traits": [0.95, 0.6, 0.4, 0.6, 0.5, 0.7],
+    "skills": [
+      "Machine Learning và Deep Learning",
+      "Python, TensorFlow, PyTorch",
+      "Computer Vision và NLP",
+      "Xử lý và phân tích Big Data",
+      "Model deployment và MLOps",
+      "Neural Networks và Reinforcement Learning"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "AI101", "name": "Nhập môn trí tuệ nhân tạo", "credits": 3 },
+        { "code": "MATH101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "STAT101", "name": "Xác suất thống kê", "credits": 3 },
+        { "code": "PROG101", "name": "Lập trình Python", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "ML201", "name": "Machine Learning", "credits": 3 },
+        {
+          "code": "DATA201",
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "credits": 3
+        },
+        { "code": "LINALG201", "name": "Đại số tuyến tính", "credits": 3 },
+        { "code": "DB201", "name": "Cơ sở dữ liệu", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "DL301", "name": "Deep Learning", "credits": 3 },
+        { "code": "CV301", "name": "Computer Vision", "credits": 3 },
+        { "code": "NLP301", "name": "Xử lý ngôn ngữ tự nhiên", "credits": 3 },
+        { "code": "BIG301", "name": "Big Data Processing", "credits": 2 }
+      ],
+      "ky4": [
+        { "code": "RL401", "name": "Reinforcement Learning", "credits": 3 },
+        {
+          "code": "MLOps401",
+          "name": "MLOps và Model Deployment",
+          "credits": 3
+        },
+        {
+          "code": "ETHICS401",
+          "name": "AI Ethics và Responsible AI",
+          "credits": 2
+        },
+        { "code": "SPEC401", "name": "AI Specialization", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "PROJ501", "name": "Capstone AI Project", "credits": 4 },
+        { "code": "RESEARCH501", "name": "AI Research Methods", "credits": 2 },
+        { "code": "INDUSTRY501", "name": "AI in Industry", "credits": 2 },
+        { "code": "INTERN501", "name": "AI Internship", "credits": 4 }
+      ]
+    }
+  },
+  {
+    "id": "cybersec",
+    "name_vi": "An toàn thông tin",
+    "name_en": "Cybersecurity",
+    "description": "Bảo mật hệ thống, phân tích rủi ro, kiểm thử xâm nhập.",
+    "traits": [0.9, 0.4, 0.5, 0.8, 0.5, 0.8],
+    "skills": [
+      "Ethical Hacking và Penetration Testing",
+      "Network Security và Firewall",
+      "Incident Response và Digital Forensics",
+      "Quản lý rủi ro và tuân thủ",
+      "Cryptography và PKI",
+      "Security Assessment và Auditing"
+    ],
+    "curriculum": {
+      "ky1": [
+        {
+          "code": "SEC101",
+          "name": "Nhập môn an toàn thông tin",
+          "credits": 3
+        },
+        { "code": "NET101", "name": "Mạng máy tính", "credits": 3 },
+        { "code": "OS101", "name": "Hệ điều hành", "credits": 3 },
+        { "code": "MATH101", "name": "Toán rời rạc", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "CRYPTO201", "name": "Mật mã học", "credits": 3 },
+        { "code": "NETSEC201", "name": "Bảo mật mạng", "credits": 3 },
+        { "code": "PROG201", "name": "Lập trình bảo mật", "credits": 3 },
+        { "code": "LAW201", "name": "Pháp luật an ninh mạng", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "PENTEST301", "name": "Kiểm thử xâm nhập", "credits": 3 },
+        { "code": "FORENSIC301", "name": "Điều tra số", "credits": 3 },
+        { "code": "MALWARE301", "name": "Phân tích mã độc", "credits": 3 },
+        { "code": "WIRELESS301", "name": "Bảo mật không dây", "credits": 2 }
+      ],
+      "ky4": [
+        { "code": "INCIDENT401", "name": "Ứng cứu sự cố", "credits": 3 },
+        { "code": "RISK401", "name": "Quản lý rủi ro", "credits": 3 },
+        { "code": "CLOUD401", "name": "Bảo mật đám mây", "credits": 3 },
+        { "code": "IOT401", "name": "Bảo mật IoT", "credits": 2 }
+      ],
+      "ky5": [
+        { "code": "PROJ501", "name": "Dự án an toàn thông tin", "credits": 4 },
+        { "code": "AUDIT501", "name": "Kiểm toán an ninh", "credits": 3 },
+        {
+          "code": "ADV501",
+          "name": "Advanced Persistent Threats",
+          "credits": 2
+        },
+        { "code": "INTERN501", "name": "Thực tập chuyên ngành", "credits": 3 }
+      ]
+    }
+  },
+  {
+    "id": "data",
+    "name_vi": "Phân tích dữ liệu",
+    "name_en": "Data Analytics",
+    "description": "Phân tích dữ liệu, trực quan hoá, hỗ trợ quyết định.",
+    "traits": [0.9, 0.5, 0.5, 0.7, 0.5, 0.7],
+    "skills": [
+      "Python, R, SQL cho phân tích dữ liệu",
+      "Tableau, Power BI, Excel advanced",
+      "Statistical analysis và hypothesis testing",
+      "Data Mining và Machine Learning cơ bản",
+      "Business Intelligence và Reporting",
+      "Data Visualization và Storytelling"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "STAT101", "name": "Thống kê cơ bản", "credits": 3 },
+        { "code": "MATH101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "EXCEL101", "name": "Excel nâng cao", "credits": 2 },
+        { "code": "BUS101", "name": "Nhập môn kinh doanh", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "SQL201", "name": "SQL và Database", "credits": 3 },
+        {
+          "code": "PYTHON201",
+          "name": "Python cho Data Analysis",
+          "credits": 3
+        },
+        { "code": "STAT201", "name": "Thống kê ứng dụng", "credits": 3 },
+        {
+          "code": "RESEARCH201",
+          "name": "Phương pháp nghiên cứu",
+          "credits": 2
+        }
+      ],
+      "ky3": [
+        {
+          "code": "TABLEAU301",
+          "name": "Data Visualization với Tableau",
+          "credits": 3
+        },
+        {
+          "code": "POWERBI301",
+          "name": "Business Intelligence với Power BI",
+          "credits": 3
+        },
+        { "code": "MINING301", "name": "Data Mining", "credits": 3 },
+        { "code": "ANALYTICS301", "name": "Business Analytics", "credits": 2 }
+      ],
+      "ky4": [
+        { "code": "ADV401", "name": "Advanced Analytics", "credits": 3 },
+        { "code": "PREDICT401", "name": "Predictive Analytics", "credits": 3 },
+        { "code": "BIGDATA401", "name": "Big Data Fundamentals", "credits": 2 },
+        { "code": "STORY401", "name": "Data Storytelling", "credits": 2 }
+      ],
+      "ky5": [
+        {
+          "code": "PROJ501",
+          "name": "Capstone Analytics Project",
+          "credits": 4
+        },
+        { "code": "CONSULT501", "name": "Analytics Consulting", "credits": 2 },
+        {
+          "code": "DOMAIN501",
+          "name": "Domain-specific Analytics",
+          "credits": 2
+        },
+        {
+          "code": "INTERN501",
+          "name": "Data Analytics Internship",
+          "credits": 4
+        }
+      ]
+    }
+  },
+  {
+    "id": "graphic",
+    "name_vi": "Thiết kế đồ hoạ",
+    "name_en": "Graphic Design",
+    "description": "Thiết kế thương hiệu, UI/UX, minh hoạ, chuyển động.",
+    "traits": [0.4, 0.95, 0.5, 0.6, 0.4, 0.5],
+    "skills": [
+      "Sử dụng thành thạo Photoshop, Illustrator",
+      "Tư duy thị giác và bố cục",
+      "Kỹ năng nhiếp ảnh và chỉnh sửa hình ảnh",
+      "Thiết kế bao bì, ấn phẩm truyền thông",
+      "Sản xuất và biên tập video cơ bản",
+      "Sáng tạo ý tưởng thiết kế"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "MUL116", "name": "Nhập môn đồ họa", "credits": 2 },
+        {
+          "code": "MUL1013",
+          "name": "Thiết kế hình ảnh với Photoshop",
+          "credits": 3
+        }
+      ],
+      "ky2": [
+        {
+          "code": "MUL1024",
+          "name": "Thiết kế minh họa với Illustrator",
+          "credits": 3
+        },
+        { "code": "MUL1143", "name": "Luật xa gần và bố cục", "credits": 3 }
+      ],
+      "ky3": [
+        { "code": "MUL2133", "name": "Nghệ thuật chữ", "credits": 3 },
+        { "code": "MUL2123", "name": "Thiết kế bao bì", "credits": 3 }
+      ],
+      "ky4": [
+        { "code": "MUL117", "name": "Kỹ thuật nhiếp ảnh", "credits": 3 },
+        { "code": "MUL217", "name": "Ý tưởng sáng tạo", "credits": 3 }
+      ],
+      "ky5": [
+        {
+          "code": "MUL3211",
+          "name": "Hiệu ứng kỹ xảo với Adobe After Effect",
+          "credits": 3
+        },
+        {
+          "code": "MUL2241",
+          "name": "Quay và dựng phim với Adobe Premiere",
+          "credits": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "multimedia",
+    "name_vi": "Truyền thông đa phương tiện",
+    "name_en": "Multimedia",
+    "description": "Sáng tạo nội dung, dựng phim, nhiếp ảnh, truyền thông.",
+    "traits": [0.5, 0.9, 0.7, 0.5, 0.5, 0.5]
+  },
+  {
+    "id": "marketing",
+    "name_vi": "Digital Marketing",
+    "name_en": "Digital Marketing",
+    "description": "Chiến lược số, nội dung, quảng cáo, tăng trưởng.",
+    "traits": [0.6, 0.8, 0.85, 0.5, 0.6, 0.5],
+    "skills": [
+      "Chiến lược tiếp thị số",
+      "Quảng cáo Google Ads và Facebook Ads",
+      "Phân tích dữ liệu Marketing",
+      "SEO và tối ưu hóa nội dung",
+      "Quản trị mạng xã hội",
+      "Sáng tạo nội dung truyền thông"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "MKT101", "name": "Nguyên lý Marketing", "credits": 3 },
+        { "code": "COM1071", "name": "Tin học", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "MKT201", "name": "Marketing kỹ thuật số", "credits": 3 },
+        {
+          "code": "COM203",
+          "name": "Thiết kế nội dung đa phương tiện",
+          "credits": 3
+        }
+      ],
+      "ky3": [
+        { "code": "MKT301", "name": "SEO và SEM", "credits": 3 },
+        { "code": "MKT302", "name": "Quản trị mạng xã hội", "credits": 3 }
+      ],
+      "ky4": [
+        {
+          "code": "MKT401",
+          "name": "Phân tích dữ liệu Marketing",
+          "credits": 3
+        },
+        { "code": "MKT402", "name": "Chiến lược truyền thông", "credits": 3 }
+      ],
+      "ky5": [{ "code": "MKT501", "name": "Dự án Marketing", "credits": 5 }]
+    }
+  },
+  {
+    "id": "emarket",
+    "name_vi": "Thương mại điện tử",
+    "name_en": "E-commerce",
+    "description": "Vận hành sàn, tối ưu chuyển đổi, logistics.",
+    "traits": [0.7, 0.7, 0.7, 0.6, 0.6, 0.6]
+  },
+  {
+    "id": "business",
+    "name_vi": "Quản trị doanh nghiệp",
+    "name_en": "Business Administration",
+    "description": "Quản lý, vận hành, tối ưu nguồn lực, chiến lược.",
+    "traits": [0.7, 0.6, 0.8, 0.6, 0.85, 0.6]
+  },
+  {
+    "id": "hotel",
+    "name_vi": "Quản trị khách sạn",
+    "name_en": "Hotel Management",
+    "description": "Dịch vụ khách hàng, vận hành, tiêu chuẩn chất lượng.",
+    "traits": [0.5, 0.6, 0.85, 0.7, 0.6, 0.6],
+    "skills": [
+      "Front Office Management và Guest Relations",
+      "Food & Beverage Service và Kitchen Operations",
+      "Housekeeping và Facilities Management",
+      "Revenue Management và Pricing Strategy",
+      "Customer Service Excellence",
+      "Hotel Operations và Quality Standards"
+    ],
+    "curriculum": {
+      "ky1": [
+        {
+          "code": "HTM101",
+          "name": "Nhập môn quản trị khách sạn",
+          "credits": 3
+        },
+        { "code": "FB101", "name": "Food & Beverage Service", "credits": 3 },
+        { "code": "ENG101", "name": "Hotel English", "credits": 3 },
+        { "code": "BUS101", "name": "Nguyên lý quản trị", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "FO201", "name": "Front Office Operations", "credits": 3 },
+        { "code": "HK201", "name": "Housekeeping Management", "credits": 3 },
+        { "code": "ACC201", "name": "Hotel Accounting", "credits": 2 },
+        { "code": "WINE201", "name": "Wine & Beverage Knowledge", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "REV301", "name": "Revenue Management", "credits": 3 },
+        { "code": "EVENT301", "name": "Event Management", "credits": 3 },
+        { "code": "SALES301", "name": "Hotel Sales & Marketing", "credits": 3 },
+        { "code": "LAW301", "name": "Hospitality Law", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "MGMT401",
+          "name": "Hotel Operations Management",
+          "credits": 3
+        },
+        { "code": "HR401", "name": "Human Resources in Hotels", "credits": 2 },
+        { "code": "FIN401", "name": "Hotel Finance", "credits": 2 },
+        { "code": "TECH401", "name": "Hotel Technology Systems", "credits": 2 }
+      ],
+      "ky5": [
+        {
+          "code": "INTERN501",
+          "name": "Hotel Management Internship",
+          "credits": 6
+        },
+        { "code": "PROJ501", "name": "Capstone Project", "credits": 3 },
+        {
+          "code": "LEAD501",
+          "name": "Leadership in Hospitality",
+          "credits": 2
+        },
+        { "code": "TREND501", "name": "Industry Trends", "credits": 1 }
+      ]
+    }
+  },
+  {
+    "id": "tourism",
+    "name_vi": "Du lịch",
+    "name_en": "Tourism",
+    "description": "Lữ hành, hướng dẫn, trải nghiệm địa phương.",
+    "traits": [0.5, 0.7, 0.85, 0.6, 0.6, 0.6],
+    "skills": [
+      "Tour Planning và Itinerary Design",
+      "Customer Service và Guest Relations",
+      "Tourism Geography và Destination Knowledge",
+      "Cultural Heritage và Sustainable Tourism",
+      "Sales & Marketing trong Du lịch",
+      "Event và MICE Management"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "TOUR101", "name": "Nhập môn du lịch", "credits": 3 },
+        { "code": "GEO101", "name": "Địa lý du lịch Việt Nam", "credits": 3 },
+        { "code": "CULT101", "name": "Văn hóa và Di sản", "credits": 2 },
+        { "code": "ENG101", "name": "Tourism English", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "GUIDE201", "name": "Tour Guiding Techniques", "credits": 3 },
+        {
+          "code": "PLAN201",
+          "name": "Tour Planning & Operations",
+          "credits": 3
+        },
+        { "code": "MICE201", "name": "MICE Tourism", "credits": 2 },
+        {
+          "code": "TRANS201",
+          "name": "Transportation in Tourism",
+          "credits": 2
+        }
+      ],
+      "ky3": [
+        {
+          "code": "ECO301",
+          "name": "Ecotourism và Sustainable Travel",
+          "credits": 3
+        },
+        { "code": "MKT301", "name": "Tourism Marketing", "credits": 3 },
+        { "code": "DEST301", "name": "Destination Management", "credits": 2 },
+        { "code": "FOOD301", "name": "Culinary Tourism", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "BUS401",
+          "name": "Tourism Business Management",
+          "credits": 3
+        },
+        { "code": "ADV401", "name": "Adventure Tourism", "credits": 2 },
+        { "code": "DIGI401", "name": "Digital Tourism", "credits": 2 },
+        { "code": "RES401", "name": "Tourism Research Methods", "credits": 2 }
+      ],
+      "ky5": [
+        {
+          "code": "INTERN501",
+          "name": "Tourism Industry Internship",
+          "credits": 6
+        },
+        {
+          "code": "PROJ501",
+          "name": "Tourism Development Project",
+          "credits": 3
+        },
+        { "code": "GLOBAL501", "name": "Global Tourism Trends", "credits": 2 },
+        {
+          "code": "ENTREP501",
+          "name": "Tourism Entrepreneurship",
+          "credits": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "mechatronics",
+    "name_vi": "Cơ điện tử",
+    "name_en": "Mechatronics",
+    "description": "Cơ khí, điện – điều khiển, tự động hoá.",
+    "traits": [0.85, 0.55, 0.45, 0.8, 0.5, 0.75],
+    "skills": [
+      "Thiết kế hệ thống cơ điện tử",
+      "Lập trình PLC và automation",
+      "Robotics và Industrial robots",
+      "CAD/CAM và solidworks",
+      "Sensor technology và actuators",
+      "Control systems và điều khiển tự động"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "MECH101", "name": "Cơ sở cơ học", "credits": 3 },
+        { "code": "ELEC101", "name": "Cơ sở điện học", "credits": 3 },
+        { "code": "MATH101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "PHYS101", "name": "Vật lý đại cương", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "CAD201", "name": "Thiết kế CAD", "credits": 3 },
+        { "code": "CIRCUIT201", "name": "Mạch điện", "credits": 3 },
+        { "code": "PROG201", "name": "Lập trình C/C++", "credits": 3 },
+        { "code": "MATER201", "name": "Vật liệu kỹ thuật", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "PLC301", "name": "Lập trình PLC", "credits": 3 },
+        { "code": "ROBOT301", "name": "Robotics cơ bản", "credits": 3 },
+        { "code": "SENSOR301", "name": "Sensor và đo lường", "credits": 3 },
+        { "code": "CONTROL301", "name": "Hệ thống điều khiển", "credits": 3 }
+      ],
+      "ky4": [
+        { "code": "AUTO401", "name": "Tự động hóa sản xuất", "credits": 3 },
+        {
+          "code": "DESIGN401",
+          "name": "Thiết kế hệ mechatronic",
+          "credits": 3
+        },
+        { "code": "MAINT401", "name": "Bảo trì thiết bị", "credits": 2 },
+        { "code": "PROJECT401", "name": "Dự án mechatronics", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập kỹ thuật", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "INNO501", "name": "Đổi mới sáng tạo", "credits": 2 }
+      ]
+    }
+  },
+  {
+    "id": "electronics",
+    "name_vi": "Điện tử – Viễn thông",
+    "name_en": "Electronics & Telecom",
+    "description": "Mạch, tín hiệu, mạng truyền thông.",
+    "traits": [0.85, 0.5, 0.5, 0.75, 0.5, 0.7],
+    "skills": [
+      "Thiết kế mạch điện tử",
+      "Xử lý tín hiệu số và analog",
+      "Viễn thông và networking",
+      "Embedded systems programming",
+      "RF và wireless communication",
+      "PCB design và layout"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "ELEC101", "name": "Cơ sở điện tử", "credits": 3 },
+        { "code": "MATH101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "PHYS101", "name": "Vật lý điện tử", "credits": 3 },
+        { "code": "PROG101", "name": "Lập trình C", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "CIRCUIT201", "name": "Mạch điện tử", "credits": 3 },
+        { "code": "SIGNAL201", "name": "Xử lý tín hiệu", "credits": 3 },
+        { "code": "DIGITAL201", "name": "Kỹ thuật số", "credits": 3 },
+        { "code": "MEASURE201", "name": "Đo lường điện tử", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "TELECOM301", "name": "Hệ thống viễn thông", "credits": 3 },
+        { "code": "EMBED301", "name": "Embedded systems", "credits": 3 },
+        { "code": "RF301", "name": "Kỹ thuật RF", "credits": 3 },
+        { "code": "NETWORK301", "name": "Mạng truyền thông", "credits": 2 }
+      ],
+      "ky4": [
+        {
+          "code": "WIRELESS401",
+          "name": "Wireless communication",
+          "credits": 3
+        },
+        { "code": "PCB401", "name": "PCB Design", "credits": 2 },
+        { "code": "IOT401", "name": "IoT và Smart devices", "credits": 3 },
+        { "code": "PROJECT401", "name": "Dự án điện tử", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập điện tử", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "INDUSTRY501", "name": "Thực tiễn công nghiệp", "credits": 2 }
+      ]
+    }
+  },
+  {
+    "id": "automotive",
+    "name_vi": "Kỹ thuật ô tô",
+    "name_en": "Automotive Engineering",
+    "description": "Hệ thống ô tô, chẩn đoán, bảo dưỡng.",
+    "traits": [0.8, 0.5, 0.5, 0.85, 0.55, 0.75],
+    "skills": [
+      "Động cơ và hệ thống truyền động",
+      "Hệ thống điện ô tô",
+      "Chẩn đoán và sửa chữa",
+      "CAD thiết kế ô tô",
+      "Công nghệ hybrid và electric vehicle",
+      "Quản lý chất lượng sản xuất"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "AUTO101", "name": "Nhập môn kỹ thuật ô tô", "credits": 3 },
+        { "code": "MECH101", "name": "Cơ học ứng dụng", "credits": 3 },
+        { "code": "MATH101", "name": "Toán cao cấp", "credits": 3 },
+        { "code": "MATER101", "name": "Vật liệu ô tô", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "ENGINE201", "name": "Động cơ đốt trong", "credits": 3 },
+        { "code": "TRANS201", "name": "Hệ thống truyền động", "credits": 3 },
+        { "code": "ELEC201", "name": "Điện ô tô", "credits": 3 },
+        { "code": "FLUID201", "name": "Cơ học chất lỏng", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "DIAG301", "name": "Chẩn đoán ô tô", "credits": 3 },
+        { "code": "SAFETY301", "name": "An toàn và môi trường", "credits": 2 },
+        { "code": "HYBRID301", "name": "Xe hybrid và điện", "credits": 3 },
+        { "code": "CAD301", "name": "Thiết kế CAD ô tô", "credits": 3 }
+      ],
+      "ky4": [
+        { "code": "MAINT401", "name": "Bảo dưỡng và sửa chữa", "credits": 3 },
+        { "code": "QUALITY401", "name": "Quản lý chất lượng", "credits": 2 },
+        { "code": "SMART401", "name": "Smart car technology", "credits": 3 },
+        { "code": "BUS401", "name": "Quản trị doanh nghiệp ô tô", "credits": 2 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập ngành ô tô", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "STARTUP501", "name": "Khởi nghiệp ô tô", "credits": 2 }
+      ]
+    }
+  },
+  {
+    "id": "logistics",
+    "name_vi": "Logistics",
+    "name_en": "Logistics",
+    "description": "Chuỗi cung ứng, kho vận, tối ưu hoá.",
+    "traits": [0.75, 0.55, 0.6, 0.8, 0.65, 0.7],
+    "skills": [
+      "Supply Chain Management",
+      "Warehouse operations và Inventory",
+      "Transportation và Distribution",
+      "Logistics technology và WMS",
+      "Procurement và Sourcing",
+      "Operations research và Optimization"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "LOG101", "name": "Nhập môn Logistics", "credits": 3 },
+        { "code": "BUS101", "name": "Nguyên lý quản trị", "credits": 3 },
+        { "code": "ECON101", "name": "Kinh tế học", "credits": 3 },
+        { "code": "MATH101", "name": "Toán ứng dụng", "credits": 2 }
+      ],
+      "ky2": [
+        { "code": "SCM201", "name": "Supply Chain Management", "credits": 3 },
+        { "code": "WARE201", "name": "Quản lý kho", "credits": 3 },
+        { "code": "TRANS201", "name": "Vận tải logistics", "credits": 3 },
+        { "code": "LAW201", "name": "Luật thương mại", "credits": 2 }
+      ],
+      "ky3": [
+        { "code": "PROC301", "name": "Procurement Management", "credits": 3 },
+        { "code": "TECH301", "name": "Logistics Technology", "credits": 3 },
+        { "code": "OPT301", "name": "Operations Research", "credits": 3 },
+        { "code": "QUALITY301", "name": "Quản lý chất lượng", "credits": 2 }
+      ],
+      "ky4": [
+        { "code": "GLOBAL401", "name": "Global Logistics", "credits": 3 },
+        { "code": "COST401", "name": "Cost Management", "credits": 2 },
+        { "code": "LEAN401", "name": "Lean & Six Sigma", "credits": 2 },
+        { "code": "PROJECT401", "name": "Logistics Project", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "INTERN501", "name": "Thực tập Logistics", "credits": 6 },
+        { "code": "THESIS501", "name": "Đồ án tốt nghiệp", "credits": 4 },
+        { "code": "CONSULT501", "name": "Logistics Consulting", "credits": 2 }
+      ]
+    }
+  },
+  {
+    "id": "game",
+    "name_vi": "Công nghệ thông tin - Lập trình Game",
+    "name_en": "Game Development",
+    "description": "Phát triển game 2D/3D, thiết kế cơ sở dữ liệu game, sử dụng Unity.",
+    "traits": [0.9, 0.7, 0.5, 0.7, 0.5, 0.7],
+    "skills": [
+      "Lập trình C#, C++",
+      "Phát triển game 2D và 3D",
+      "Thiết kế và triển khai cơ sở dữ liệu cho game",
+      "Sử dụng Unity và các engine game",
+      "Quản lý dự án phát triển game",
+      "Kiểm thử và tối ưu hóa game"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "PDP102", "name": "Kỹ năng học tập", "credits": 2 },
+        { "code": "COM1071", "name": "Tin học", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "NET101", "name": "Lập trình C# 1", "credits": 3 },
+        { "code": "GAM104", "name": "Nhập môn lập trình Game", "credits": 3 }
+      ],
+      "ky3": [
+        { "code": "GAM109", "name": "Lập trình C# 2 cho Unity", "credits": 3 },
+        { "code": "GAM110", "name": "Cơ sở dữ liệu cho Game", "credits": 3 }
+      ],
+      "ky4": [
+        { "code": "GAM301", "name": "Xây dựng kịch bản Game", "credits": 3 },
+        { "code": "WEB1013", "name": "Xây dựng trang Web", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "GAM302", "name": "Chuyên đề Game Online", "credits": 3 },
+        { "code": "PRO230", "name": "Dự án tốt nghiệp Game", "credits": 5 }
+      ]
+    }
+  },
+  {
+    "id": "mechanical",
+    "name_vi": "Cơ khí chế tạo máy",
+    "name_en": "Mechanical Engineering",
+    "description": "Thiết kế, gia công, vận hành và bảo trì máy móc, thiết bị cơ khí.",
+    "traits": [0.85, 0.5, 0.45, 0.85, 0.5, 0.8],
+    "skills": [
+      "Vận hành và bảo trì máy móc",
+      "Thiết kế cơ khí 2D/3D bằng AutoCAD, SolidWorks",
+      "Gia công CNC",
+      "Đọc và phân tích bản vẽ kỹ thuật",
+      "Quản lý sản xuất",
+      "Kiểm tra và đảm bảo chất lượng sản phẩm"
+    ],
+    "curriculum": {
+      "ky1": [
+        { "code": "MEC101", "name": "Vẽ kỹ thuật", "credits": 3 },
+        { "code": "MEC102", "name": "Cơ học đại cương", "credits": 3 }
+      ],
+      "ky2": [
+        { "code": "MEC201", "name": "Nguyên lý máy", "credits": 3 },
+        {
+          "code": "MEC202",
+          "name": "Dung sai và Kỹ thuật đo lường",
+          "credits": 3
+        }
+      ],
+      "ky3": [
+        { "code": "MEC301", "name": "Công nghệ chế tạo máy", "credits": 3 },
+        { "code": "MEC302", "name": "Gia công CNC", "credits": 3 }
+      ],
+      "ky4": [
+        { "code": "MEC401", "name": "Thiết kế chi tiết máy", "credits": 3 },
+        { "code": "MEC402", "name": "Quản lý sản xuất", "credits": 3 }
+      ],
+      "ky5": [
+        { "code": "MEC501", "name": "Dự án tốt nghiệp Cơ khí", "credits": 5 }
+      ]
+    }
+  }
 ]
